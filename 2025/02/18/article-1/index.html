@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1. The main idea of enumeration algorithm “List all possible solutions to this problem one by one, and in the process of listing, check each possible solution to see if it is the true solution to the">
+  <meta name="description" content="1. The main idea of enumeration algorithm  “List all possible solutions to this problem one by one, and in the process of listing, check each possible solution to see if it is the true solution to the">
 <meta property="og:type" content="article">
 <meta property="og:title" content="👓Enumination">
 <meta property="og:url" content="http://example.com/2025/02/18/article-1/index.html">
 <meta property="og:site_name" content="Yanran Xie&#39;s Blog">
-<meta property="og:description" content="1. The main idea of enumeration algorithm “List all possible solutions to this problem one by one, and in the process of listing, check each possible solution to see if it is the true solution to the">
+<meta property="og:description" content="1. The main idea of enumeration algorithm  “List all possible solutions to this problem one by one, and in the process of listing, check each possible solution to see if it is the true solution to the">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-02-18T03:24:56.000Z">
-<meta property="article:modified_time" content="2025-02-20T10:53:50.095Z">
+<meta property="article:modified_time" content="2025-02-20T11:01:02.221Z">
 <meta property="article:author" content="Yanran Xie">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-02-20 18:53:50" itemprop="dateModified" datetime="2025-02-20T18:53:50+08:00">2025-02-20</time>
+                <time title="Modified: 2025-02-20 19:01:02" itemprop="dateModified" datetime="2025-02-20T19:01:02+08:00">2025-02-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,7 +214,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5k</span>
+              <span>5.1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -233,82 +233,146 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-The-main-idea-of-enumeration-algorithm"><a href="#1-The-main-idea-of-enumeration-algorithm" class="headerlink" title="1. The main idea of enumeration algorithm"></a>1. The main idea of enumeration algorithm</h1><blockquote>
-<p>“List all possible solutions to this problem one by one, and in the process of listing, check each possible solution to see if it is the true solution to the problem.”</p>
+        <h1 id="the-main-idea-of-enumeration-algorithm">1. The main idea of
+enumeration algorithm</h1>
+<blockquote>
+<p>“List all possible solutions to this problem one by one, and in the
+process of listing, check each possible solution to see if it is the
+true solution to the problem.”</p>
 </blockquote>
-<span id="more"></span> 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a><br><strong>Instruction:</strong></p>
-<ol>
-<li><p>   <strong>Identify the enumeration objects</strong></p>
-</li>
-<li><p>   <strong>List possible solutions one by one</strong></p>
-</li>
-<li><p>   <strong>Verify each possible solution one by one</strong></p>
-</li>
+<span id="more"></span>
+<p>More info: <a
+target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a>
+<strong>Instruction:</strong></p>
+<ol type="1">
+<li><p><strong>Identify the enumeration objects</strong></p></li>
+<li><p><strong>List possible solutions one by one</strong></p></li>
+<li><p><strong>Verify each possible solution one by
+one</strong></p></li>
 </ol>
-<h1 id="2-Typical-application-examples-of-enumeration-algorithm"><a href="#2-Typical-application-examples-of-enumeration-algorithm" class="headerlink" title="2. Typical application examples of enumeration algorithm"></a>2. Typical application examples of enumeration algorithm</h1><h2 id="2-1-Array-paring"><a href="#2-1-Array-paring" class="headerlink" title="2.1 Array paring"></a>2.1 Array paring</h2><hr>
-<h3 id="2-1-1-Problem-Description"><a href="#2-1-1-Problem-Description" class="headerlink" title="2.1.1 Problem Description"></a>2.1.1 <strong>Problem Description</strong></h3><p>The problem presented involves selecting two distinct numbers from an array of size n such that their sum is divisible by a given integer $k$. The challenge is to calculate how many different pairs can be chosen, while considering that pairs like $(a_1, a_2)$ and $(a_2, a_1)$ are considered the same.</p>
+<h1 id="typical-application-examples-of-enumeration-algorithm">2.
+Typical application examples of enumeration algorithm</h1>
+<h2 id="array-paring">2.1 Array paring</h2>
+<hr />
+<h3 id="problem-description">2.1.1 <strong>Problem
+Description</strong></h3>
+<p>The problem presented involves selecting two distinct numbers from an
+array of size n such that their sum is divisible by a given integer
+<span class="math inline">\(k\)</span>. The challenge is to calculate
+how many different pairs can be chosen, while considering that pairs
+like <span class="math inline">\((a_1, a_2)\)</span> and <span
+class="math inline">\((a_2, a_1)\)</span> are considered the same.</p>
 <p>Given:</p>
 <ul>
-<li><p>An array $A$ of length $n$.</p>
-</li>
-<li><p>A positive integer $k$.</p>
-</li>
-<li><p>The task is to select pairs of numbers $a_i$ and $a_j$ (where $i &lt; j$) such that:</p>
-<p>  $(a_i + a_j) % k &#x3D; 0$</p>
-</li>
+<li><p>An array <span class="math inline">\(A\)</span> of length <span
+class="math inline">\(n\)</span>.</p></li>
+<li><p>A positive integer <span
+class="math inline">\(k\)</span>.</p></li>
+<li><p>The task is to select pairs of numbers <span
+class="math inline">\(a_i\)</span> and <span
+class="math inline">\(a_j\)</span> (where <span class="math inline">\(i
+&lt; j\)</span>) such that:</p>
+<p><span class="math inline">\((a_i + a_j) \% k = 0\)</span></p></li>
 </ul>
-<p>Where $a_i$ and $a_j$ are two numbers chosen from the array.</p>
-<h3 id="2-1-2-Algorithm-and-Approach"><a href="#2-1-2-Algorithm-and-Approach" class="headerlink" title="2.1.2 Algorithm and Approach"></a>2.1.2 <strong>Algorithm and Approach</strong></h3><ol>
-<li><p><strong>Brute Force Enumeration</strong>: The brute force approach would involve looping through all possible pairs of numbers in the array and checking whether their sum is divisible by $k$. This approach has a time complexity of $O(n^2)$, where $n$ is the size of the array. For large values of $n$, this results in $O(10^{12})$ operations, which is computationally expensive.</p>
-</li>
-<li><p><strong>Optimization with Remainder Buckets</strong>: The key observation is to use modulo arithmetic. If we can categorize the numbers by their remainders when divided by k, then we can use this to reduce the complexity.<br> $B_0$  for numbers where  $a_i % k &#x3D; 0$ ;  $B_1$  for numbers where  $a_i % k &#x3D; 1$… </p>
-<p> <strong>Pair Counting Function:</strong><br> if  $(i + j) % k &#x3D; 0$  and $i≠j$ :  $\text{count}(B_i) \times \text{count}(B_j)$<br> if $i&#x3D;j$ :  $\frac{\text{count}(B_i) \times (\text{count}(B_i) - 1)}{2}$ </p>
-</li>
-<li><p><strong>Time Complexity:</strong> The time complexity of this optimized solution is  $O(n + k)$ , as we only need to iterate through the array once to categorize the numbers, and then we iterate through the  $k$  buckets to count pairs.</p>
-</li>
+<p>Where <span class="math inline">\(a_i\)</span> and <span
+class="math inline">\(a_j\)</span> are two numbers chosen from the
+array.</p>
+<h3 id="algorithm-and-approach">2.1.2 <strong>Algorithm and
+Approach</strong></h3>
+<ol type="1">
+<li><p><strong>Brute Force Enumeration</strong>: The brute force
+approach would involve looping through all possible pairs of numbers in
+the array and checking whether their sum is divisible by <span
+class="math inline">\(k\)</span>. This approach has a time complexity of
+<span class="math inline">\(O(n^2)\)</span>, where <span
+class="math inline">\(n\)</span> is the size of the array. For large
+values of <span class="math inline">\(n\)</span>, this results in <span
+class="math inline">\(O(10^{12})\)</span> operations, which is
+computationally expensive.</p></li>
+<li><p><strong>Optimization with Remainder Buckets</strong>: The key
+observation is to use modulo arithmetic. If we can categorize the
+numbers by their remainders when divided by k, then we can use this to
+reduce the complexity. <span class="math inline">\(B_0\)</span> for
+numbers where <span class="math inline">\(a_i \% k = 0\)</span> ; <span
+class="math inline">\(B_1\)</span> for numbers where <span
+class="math inline">\(a_i \% k = 1\)</span>…</p>
+<p><strong>Pair Counting Function:</strong> if <span
+class="math inline">\((i + j) \% k = 0\)</span> and <span
+class="math inline">\(i≠j\)</span> : <span
+class="math inline">\(\text{count}(B_i) \times
+\text{count}(B_j)\)</span> if <span class="math inline">\(i=j\)</span> :
+<span class="math inline">\(\frac{\text{count}(B_i) \times
+(\text{count}(B_i) - 1)}{2}\)</span></p></li>
+<li><p><strong>Time Complexity:</strong> The time complexity of this
+optimized solution is <span class="math inline">\(O(n + k)\)</span> , as
+we only need to iterate through the array once to categorize the
+numbers, and then we iterate through the <span
+class="math inline">\(k\)</span> buckets to count pairs.</p></li>
 </ol>
-<h3 id="2-1-3-Code-Example"><a href="#2-1-3-Code-Example" class="headerlink" title="2.1.3 Code Example"></a>2.1.3 <strong>Code Example</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="type">int</span> n, k;</span><br><span class="line"><span class="type">int</span> a[<span class="number">1001</span>]; <span class="comment">// Array to count numbers in remainder buckets</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(a, <span class="number">0</span>, <span class="built_in">sizeof</span>(a)); <span class="comment">// Reset the array</span></span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="type">int</span> t;</span><br><span class="line">        cin &gt;&gt; t;</span><br><span class="line">        a[t % k]++; <span class="comment">// Count numbers by remainder</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LL ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">        <span class="type">int</span> j = (k - i) % k;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; j) <span class="keyword">break</span>; <span class="comment">// Avoid counting the same pairs twice</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i == j) ans += <span class="number">1LL</span> * a[i] * (a[i] - <span class="number">1</span>) / <span class="number">2</span>; <span class="comment">// Special case for same remainder</span></span><br><span class="line">        <span class="keyword">else</span> ans += <span class="number">1LL</span> * a[i] * a[j]; <span class="comment">// Count valid pairs from different remainder groups</span></span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-Stone-Removal"><a href="#2-2-Stone-Removal" class="headerlink" title="2.2 Stone Removal"></a>2.2 <strong>Stone Removal</strong></h2><h3 id="2-2-1-Problem-Description"><a href="#2-2-1-Problem-Description" class="headerlink" title="2.2.1 Problem Description"></a>2.2.1 <strong>Problem Description</strong></h3><p>In this problem, we are given a river with stones arranged along its length, and the goal is to remove some stones such that the remaining stones have a minimal distance between two consecutive stones. The task is to remove a maximum of  $m$  stones and maximize the minimum distance between the remaining consecutive stones.</p>
+<h3 id="code-example">2.1.3 <strong>Code Example</strong></h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="type">int</span> n, k;</span><br><span class="line"><span class="type">int</span> a[<span class="number">1001</span>]; <span class="comment">// Array to count numbers in remainder buckets</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(a, <span class="number">0</span>, <span class="built_in">sizeof</span>(a)); <span class="comment">// Reset the array</span></span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="type">int</span> t;</span><br><span class="line">        cin &gt;&gt; t;</span><br><span class="line">        a[t % k]++; <span class="comment">// Count numbers by remainder</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LL ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">        <span class="type">int</span> j = (k - i) % k;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; j) <span class="keyword">break</span>; <span class="comment">// Avoid counting the same pairs twice</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i == j) ans += <span class="number">1LL</span> * a[i] * (a[i] - <span class="number">1</span>) / <span class="number">2</span>; <span class="comment">// Special case for same remainder</span></span><br><span class="line">        <span class="keyword">else</span> ans += <span class="number">1LL</span> * a[i] * a[j]; <span class="comment">// Count valid pairs from different remainder groups</span></span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="stone-removal">2.2 <strong>Stone Removal</strong></h2>
+<h3 id="problem-description-1">2.2.1 <strong>Problem
+Description</strong></h3>
+<p>In this problem, we are given a river with stones arranged along its
+length, and the goal is to remove some stones such that the remaining
+stones have a minimal distance between two consecutive stones. The task
+is to remove a maximum of <span class="math inline">\(m\)</span> stones
+and maximize the minimum distance between the remaining consecutive
+stones.</p>
 <p>Given:</p>
 <ul>
-<li>A sequence of stones represented as an array  $S &#x3D; [s_1, s_2, \dots, s_n]$ , where the distance between two consecutive stones is provided.</li>
-<li>A positive integer  $m$ , which represents the maximum number of stones that can be removed.</li>
-<li>The objective is to determine the maximum minimum distance between consecutive stones after removing up to  $m$  stones.</li>
+<li>A sequence of stones represented as an array <span
+class="math inline">\(S = [s_1, s_2, \dots, s_n]\)</span> , where the
+distance between two consecutive stones is provided.</li>
+<li>A positive integer <span class="math inline">\(m\)</span> , which
+represents the maximum number of stones that can be removed.</li>
+<li>The objective is to determine the maximum minimum distance between
+consecutive stones after removing up to <span
+class="math inline">\(m\)</span> stones.</li>
 </ul>
 <p>Input:</p>
 <p>The input consists of multiple test cases (up to 20).</p>
 <p>Each test case consists of two integers:</p>
 <ul>
-<li>$n$  ($2 ≤$  $n$  $≤ 1000$), representing the number of stones.</li>
-<li>$m$  ($0 ≤  m \leq n-2$ ), the maximum number of stones that can be removed.</li>
-<li>Then follow  $n-1$  integers representing the distances between adjacent stones.</li>
+<li><span class="math inline">\(n\)</span> (<span
+class="math inline">\(2 ≤\)</span> <span
+class="math inline">\(n\)</span> <span class="math inline">\(≤
+1000\)</span>), representing the number of stones.</li>
+<li><span class="math inline">\(m\)</span> (<span
+class="math inline">\(0 ≤  m \leq n-2\)</span> ), the maximum number of
+stones that can be removed.</li>
+<li>Then follow <span class="math inline">\(n-1\)</span> integers
+representing the distances between adjacent stones.</li>
 </ul>
 <p>Output:</p>
-<p>For each test case, output the maximum possible minimum distance between any two consecutive stones after removing up to  $m$  stones.</p>
-<h3 id="2-2-2-Algorithm-and-Approach"><a href="#2-2-2-Algorithm-and-Approach" class="headerlink" title="2.2.2 Algorithm and Approach"></a>2.2.2 <strong>Algorithm and Approach</strong></h3><ol>
-<li><strong>Validate Function</strong>  $C(d)$ : The function  $C(d)$  checks if we can maintain a minimum distance of  $d$  after removing up to  m  stones. We start with the first stone and try to place the subsequent stones such that their distance from the last placed stone is at least  $d$ .</li>
-<li><strong>Binary Search Optimization</strong>: Since  $C(d)$  is a monotonic function (if a distance  $d$  satisfies  $C(d)$ , then any distance  $d{\prime} \leq d$  also satisfies  C$(d{\prime})$ ), we can perform a binary search to find the maximum  $d$  that satisfies  $C(d)$ .</li>
-<li><strong>Time Complexity</strong>: The time complexity of this approach is  $O(n \log(\text{n}))$ .</li>
+<p>For each test case, output the maximum possible minimum distance
+between any two consecutive stones after removing up to <span
+class="math inline">\(m\)</span> stones.</p>
+<h3 id="algorithm-and-approach-1">2.2.2 <strong>Algorithm and
+Approach</strong></h3>
+<ol type="1">
+<li><strong>Validate Function</strong>  <span
+class="math inline">\(C(d)\)</span> : The function <span
+class="math inline">\(C(d)\)</span> checks if we can maintain a minimum
+distance of <span class="math inline">\(d\)</span> after removing up to
+m stones. We start with the first stone and try to place the subsequent
+stones such that their distance from the last placed stone is at least
+<span class="math inline">\(d\)</span> .</li>
+<li><strong>Binary Search Optimization</strong>: Since <span
+class="math inline">\(C(d)\)</span> is a monotonic function (if a
+distance <span class="math inline">\(d\)</span> satisfies <span
+class="math inline">\(C(d)\)</span> , then any distance <span
+class="math inline">\(d{\prime} \leq d\)</span> also satisfies C<span
+class="math inline">\((d{\prime})\)</span> ), we can perform a binary
+search to find the maximum <span class="math inline">\(d\)</span> that
+satisfies <span class="math inline">\(C(d)\)</span> .</li>
+<li><strong>Time Complexity</strong>: The time complexity of this
+approach is  <span class="math inline">\(O(n \log(\text{n}))\)</span>
+.</li>
 </ol>
-<h3 id="2-2-3-Code-Example"><a href="#2-2-3-Code-Example" class="headerlink" title="2.2.3 Code Example"></a>2.2.3 <strong>Code Example</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; dis;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Validate</span><span class="params">(<span class="type">int</span> d)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> k = m;  <span class="comment">// stones to be removed</span></span><br><span class="line">    <span class="type">int</span> st = <span class="number">1</span>;  <span class="comment">// position of the first stone</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> en = <span class="number">2</span>; en &lt;= n; en++) &#123;  <span class="comment">// position of the last stone</span></span><br><span class="line">        <span class="type">int</span> disCur = dis[en] - dis[st];  <span class="comment">// distance between the current stone and the last one</span></span><br><span class="line">        <span class="keyword">while</span> (disCur &lt; d) &#123;  <span class="comment">// If the distance is less than d, we remove a stone</span></span><br><span class="line">            k--;</span><br><span class="line">            en++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;  <span class="comment">// if we have removed too many stones</span></span><br><span class="line">        <span class="keyword">if</span> (en &gt; n) &#123;  <span class="comment">// special case</span></span><br><span class="line">            <span class="keyword">if</span> (st == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;  <span class="comment">// check distance between the first and last stone</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">true</span>;  <span class="comment">// can move the first stone and keep the condition</span></span><br><span class="line">        &#125;</span><br><span class="line">        disCur = dis[en] - dis[st];  <span class="comment">// update the distance</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m) != EOF) &#123;</span><br><span class="line">        dis.<span class="built_in">resize</span>(n + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;dis[i]);</span><br><span class="line">            dis[i] += dis[i - <span class="number">1</span>];  <span class="comment">// compute the prefix sum</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> lb = <span class="number">0</span>, ub = <span class="number">1000</span> * <span class="number">1000</span> + <span class="number">5</span>;  <span class="comment">// upper bound for the maximum distance</span></span><br><span class="line">        <span class="keyword">while</span> (lb &lt; ub) &#123;</span><br><span class="line">            <span class="type">int</span> mid = (lb + ub) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">Validate</span>(mid)) lb = mid;  <span class="comment">// update the lower bound</span></span><br><span class="line">            <span class="keyword">else</span> ub = mid - <span class="number">1</span>;  <span class="comment">// update the upper bound</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, lb);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h3 id="code-example-1">2.2.3 <strong>Code Example</strong></h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; dis;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Validate</span><span class="params">(<span class="type">int</span> d)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> k = m;  <span class="comment">// stones to be removed</span></span><br><span class="line">    <span class="type">int</span> st = <span class="number">1</span>;  <span class="comment">// position of the first stone</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> en = <span class="number">2</span>; en &lt;= n; en++) &#123;  <span class="comment">// position of the last stone</span></span><br><span class="line">        <span class="type">int</span> disCur = dis[en] - dis[st];  <span class="comment">// distance between the current stone and the last one</span></span><br><span class="line">        <span class="keyword">while</span> (disCur &lt; d) &#123;  <span class="comment">// If the distance is less than d, we remove a stone</span></span><br><span class="line">            k--;</span><br><span class="line">            en++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;  <span class="comment">// if we have removed too many stones</span></span><br><span class="line">        <span class="keyword">if</span> (en &gt; n) &#123;  <span class="comment">// special case</span></span><br><span class="line">            <span class="keyword">if</span> (st == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;  <span class="comment">// check distance between the first and last stone</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">true</span>;  <span class="comment">// can move the first stone and keep the condition</span></span><br><span class="line">        &#125;</span><br><span class="line">        disCur = dis[en] - dis[st];  <span class="comment">// update the distance</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m) != EOF) &#123;</span><br><span class="line">        dis.<span class="built_in">resize</span>(n + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;dis[i]);</span><br><span class="line">            dis[i] += dis[i - <span class="number">1</span>];  <span class="comment">// compute the prefix sum</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> lb = <span class="number">0</span>, ub = <span class="number">1000</span> * <span class="number">1000</span> + <span class="number">5</span>;  <span class="comment">// upper bound for the maximum distance</span></span><br><span class="line">        <span class="keyword">while</span> (lb &lt; ub) &#123;</span><br><span class="line">            <span class="type">int</span> mid = (lb + ub) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">Validate</span>(mid)) lb = mid;  <span class="comment">// update the lower bound</span></span><br><span class="line">            <span class="keyword">else</span> ub = mid - <span class="number">1</span>;  <span class="comment">// update the upper bound</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, lb);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -390,7 +454,13 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-The-main-idea-of-enumeration-algorithm"><span class="nav-number">1.</span> <span class="nav-text">1. The main idea of enumeration algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Typical-application-examples-of-enumeration-algorithm"><span class="nav-number">2.</span> <span class="nav-text">2. Typical application examples of enumeration algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Array-paring"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Array paring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-Problem-Description"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 Problem Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-Algorithm-and-Approach"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 Algorithm and Approach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-Code-Example"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 Code Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Stone-Removal"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Stone Removal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-Problem-Description"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 Problem Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-Algorithm-and-Approach"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 Algorithm and Approach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-Code-Example"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3 Code Example</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#the-main-idea-of-enumeration-algorithm"><span class="nav-number">1.</span> <span class="nav-text">1. The main idea of
+enumeration algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typical-application-examples-of-enumeration-algorithm"><span class="nav-number">2.</span> <span class="nav-text">2.
+Typical application examples of enumeration algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#array-paring"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Array paring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#problem-description"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 Problem
+Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#algorithm-and-approach"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 Algorithm and
+Approach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-example"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 Code Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stone-removal"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Stone Removal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#problem-description-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 Problem
+Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#algorithm-and-approach-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 Algorithm and
+Approach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-example-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3 Code Example</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
