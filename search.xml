@@ -3,7 +3,27 @@
   <entry>
     <title>👓Enumination</title>
     <url>/2025/02/18/article-1/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="1-Enumination-algorithms"><a href="#1-Enumination-algorithms" class="headerlink" title="1. Enumination algorithms"></a>1. Enumination algorithms</h1><aside>
+💡
+
+<p><strong>一 一列举</strong>出该问题所有可能的解，并在列举的过程中，<strong>逐一检验</strong>每个可能解是否是问题的真正解</p>
+</aside>
+
+<h2 id="1-1-instruction"><a href="#1-1-instruction" class="headerlink" title="1.1 instruction"></a>1.1 instruction</h2><ol>
+<li><strong>确定枚举对象</strong></li>
+<li><strong>逐一列举可能解</strong></li>
+<li><strong>逐一验证可能解</strong></li>
+</ol>
+<h1 id="2-Example"><a href="#2-Example" class="headerlink" title="2. Example"></a>2. Example</h1><h2 id="2-1-Array-paring"><a href="#2-1-Array-paring" class="headerlink" title="2.1 Array paring"></a>2.1 Array paring</h2><hr>
+<p>focus on optimization</p>
+<h2 id="2-2-Stone-moving"><a href="#2-2-Stone-moving" class="headerlink" title="2.2 Stone moving"></a>2.2 Stone moving</h2><aside>
+💡
+
+<p>最小距离最大值</p>
+</aside>
+
+<p>基本思想: 利用二分查找找到距离的最大值, 编写验证function—C(d)，即最多移除m个石头后任意相邻两个石头的距离不小于d</p>
+]]></content>
       <categories>
         <category>Algorithm Design and Analysis</category>
       </categories>
