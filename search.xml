@@ -113,4 +113,20 @@ if $i=j$ :  $\frac{\text{count}(B_i) \times (\text{count}(B_i) - 1)}{2}$</p>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>Divide and Conquer</title>
+    <url>/2025/02/20/Divide-and-Conquer/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Algorithm Design and Analysis</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Divide and Conquer</title>
+    <url>/2025/02/24/Divide-and-Conquer-1/</url>
+    <content><![CDATA[]]></content>
+  </entry>
 </search>
