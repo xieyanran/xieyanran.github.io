@@ -114,19 +114,148 @@ if $i=j$ :  $\frac{\text{count}(B_i) \times (\text{count}(B_i) - 1)}{2}$</p>
 ]]></content>
   </entry>
   <entry>
-    <title>Divide and Conquer</title>
-    <url>/2025/02/20/Divide-and-Conquer/</url>
-    <content><![CDATA[]]></content>
+    <title>🕶️ Divide and Conquer</title>
+    <url>/2025/02/24/Divide-and-Conquer-1/</url>
+    <content><![CDATA[<h1 id="1-The-main-idea-of-divide-and-conquer-algorithm"><a href="#1-The-main-idea-of-divide-and-conquer-algorithm" class="headerlink" title="1. The main idea of divide and conquer  algorithm"></a>1. The main idea of divide and conquer  algorithm</h1><blockquote>
+<p>The divide-and-conquer strategy algorithm consists of three stages: Divide, Conquer, and Combine. The Divide stage is where the original problem is divided into smaller subproblems. The Conquer stage involves recursively solving the subproblems. The Combine stage is where the solutions to the subproblems are combined to form the solution to the original problem.</p>
+</blockquote>
+<span id="more"></span>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h1 id="2-divide-and-conquer-algorithm-framework"><a href="#2-divide-and-conquer-algorithm-framework" class="headerlink" title="2. divide and conquer algorithm framework"></a>2. divide and conquer algorithm framework</h1><p>The pseudocode for the divide-and-conquer algorithm is as follows:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">divide-<span class="keyword">and</span>-<span class="built_in">conquer</span>(P):</span><br><span class="line">(<span class="number">1</span>) <span class="keyword">if</span> (|P| &lt;= n0) <span class="built_in">adhoc</span>(P);  <span class="comment">// Base case, solve the problem directly</span></span><br><span class="line">(<span class="number">2</span>) divide P into smaller subinstances P1, P2, ..., Pk;  <span class="comment">// Divide the problem</span></span><br><span class="line">(<span class="number">3</span>) <span class="keyword">for</span> (i = <span class="number">1</span>, i &lt;= k, i++) &#123;</span><br><span class="line">    yi = divide-<span class="keyword">and</span>-<span class="built_in">conquer</span>(Pi);  <span class="comment">// Recursively solve subproblems</span></span><br><span class="line">&#125;</span><br><span class="line">(<span class="number">4</span>) <span class="keyword">return</span> <span class="built_in">merge</span>(y1, ..., yk);  <span class="comment">// Combine the solutions of subproblems</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Base Case</strong> (adhoc(P)): When the size of the problem is small enough (below a threshold  $n_0$ ), we use a direct approach to solve it, without further division. This is the termination point for recursion.</li>
+<li><strong>Divide Step</strong>: In this step, the original problem  $P$  is divided into smaller subproblems  $P_1, P_2, …, P_k$ . The goal is to make these subproblems small enough so they can be handled easily.</li>
+<li><strong>Merge Step</strong>: After solving the subproblems, their solutions are merged together to form the solution to the original problem. This merging process is key to the divide-and-conquer approach.</li>
+<li><strong>Designing the Strategy:</strong> The design of a divide-and-conquer strategy involves dividing the original problem into  k  smaller subproblems. This step is crucial and can be approached with two principles.<ul>
+<li><strong>Balanced Subproblems</strong>: Ideally, the size of the subproblems should be balanced, meaning that the problems should be divided such that each subproblem is roughly the same size.</li>
+<li><strong>Independent Subproblems</strong>: The subproblems should be as independent as possible, meaning that the solutions to the subproblems should not interfere with each other.</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-Typical-application-examples-of-divide-and-conquer-algorithm"><a href="#3-Typical-application-examples-of-divide-and-conquer-algorithm" class="headerlink" title="3. Typical application examples of divide and conquer algorithm"></a>3. Typical application examples of divide and conquer algorithm</h1><h2 id="3-1-Chessboard-Covering-Problem"><a href="#3-1-Chessboard-Covering-Problem" class="headerlink" title="3.1 Chessboard Covering Problem"></a>3.1 Chessboard Covering Problem</h2><h3 id="3-1-1-Problem-Statement"><a href="#3-1-1-Problem-Statement" class="headerlink" title="3.1.1 Problem Statement"></a>3.1.1 <strong>Problem Statement</strong></h3><p>Given an integer  k  ( 1 \leq k \leq 10 ), the chessboard size is  2^k \times 2^k . The special square is given by coordinates  (x, y) , where  0 \leq x, y \leq 1024 . he board must be fully covered using <strong>L-shaped trominoes</strong>, which come in <strong>four different orientations</strong> (numbered 1, 2, 3, and 4 as shown in the image). Each L-tromino consists of three squares.</p>
+<p><img src="attachment:b59e2c4b-c274-41ac-8fdd-0ace58db63de:image.png" alt="image.png"></p>
+<p><strong>Input</strong></p>
+<ul>
+<li>An integer  k  representing the chessboard size  2^k \times 2^k .</li>
+<li>Two integers  x, y  representing the position of the special square.</li>
+</ul>
+<p><strong>Output</strong></p>
+<ul>
+<li>A  2^k \times 2^k  matrix where:</li>
+<li>The special square is marked as 0.</li>
+<li>Other cells are filled with numbers 1, 2, 3, or 4, indicating which L-tromino covers them.</li>
+<li>The output values are separated by <strong>tab spaces</strong>.</li>
+</ul>
+<h3 id="3-1-2-Algorithm-and-Approach"><a href="#3-1-2-Algorithm-and-Approach" class="headerlink" title="3.1.2 Algorithm and Approach"></a>3.1.2 <strong>Algorithm and Approach</strong></h3><p><img src="attachment:d7796dee-ca1f-4b98-9cf0-09cb25c433d1:image.png" alt="image.png"></p>
+<p><img src="attachment:0a1d8ab8-7782-43f3-bc49-0c81ebdb0a52:image.png" alt="image.png"></p>
+<p><img src="attachment:4fb313a5-1781-4bc0-94c7-cc60d80d1de7:image.png" alt="image.png"></p>
+<h3 id="3-1-3-Code-Example"><a href="#3-1-3-Code-Example" class="headerlink" title="3.1.3 Code Example"></a>3.1.3 <strong>Code Example</strong></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> k;</span><br><span class="line"><span class="comment">// Coordinates of the special square</span></span><br><span class="line"><span class="type">int</span> dr, dc;</span><br><span class="line"><span class="type">int</span> size = <span class="built_in">pow</span>(<span class="number">2</span>, k);</span><br><span class="line"><span class="type">int</span> Board[<span class="number">1025</span>][<span class="number">1025</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">fill</span><span class="params">(<span class="type">int</span> tr, <span class="type">int</span> tc, <span class="type">int</span> dr, <span class="type">int</span> dc)</span> &#123; <span class="comment">// Merge function</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">ChessBoard</span><span class="params">(<span class="type">int</span> tr, <span class="type">int</span> tc, <span class="type">int</span> dr, <span class="type">int</span> dc, <span class="type">int</span> size)</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (size == <span class="number">2</span>)</span><br><span class="line">		fill(tr, tc, dr, dc); <span class="comment">// Recursion base case</span></span><br><span class="line">	<span class="type">int</span> s = size / <span class="number">2</span>; <span class="comment">// Divide into subproblems</span></span><br><span class="line">	<span class="comment">// Special square is in the top-left quadrant</span></span><br><span class="line">	<span class="keyword">if</span> (dr &lt; tr + s &amp;&amp; dc &lt; tc + s) &#123;</span><br><span class="line">		ChessBoard(tr, tc, dr, dc, s); <span class="comment">// Recursively process top-left quadrant</span></span><br><span class="line">		ChessBoard(tr, tc + s, tr + s - <span class="number">1</span>, tc + s, s); <span class="comment">// Recursively process top-right quadrant</span></span><br><span class="line">		ChessBoard(tr + s, tc, tr + s, tc + s - <span class="number">1</span>, s); <span class="comment">// Recursively process bottom-left quadrant</span></span><br><span class="line">		ChessBoard(tr + s, tc + s, tr + s, tc + s, s); <span class="comment">// Recursively process bottom-right quadrant</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Special square is in the top-right quadrant</span></span><br><span class="line">	<span class="keyword">if</span> (dr &lt; tr + s &amp;&amp; dc &gt;= tc + s) &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Special square is in the bottom-left quadrant</span></span><br><span class="line">	<span class="keyword">if</span> (dr &gt;= tr + s &amp;&amp; dc &lt; tc + s) &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Special square is in the bottom-right quadrant</span></span><br><span class="line">	<span class="keyword">if</span> (dr &gt;= tr + s &amp;&amp; dc &gt;= tc + s) &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-Merge-Sort"><a href="#3-2-Merge-Sort" class="headerlink" title="3.2 Merge Sort"></a>3.2 Merge Sort</h2><h3 id="3-2-1-Problem-Statement"><a href="#3-2-1-Problem-Statement" class="headerlink" title="3.2.1 Problem Statement"></a>3.2.1 <strong>Problem Statement</strong></h3><p>classic sort problem</p>
+<h3 id="3-2-2-Algorithm-and-Approach"><a href="#3-2-2-Algorithm-and-Approach" class="headerlink" title="3.2.2 Algorithm and Approach"></a>3.2.2 <strong>Algorithm and Approach</strong></h3><ul>
+<li>Divide: Split the original array  A  into two equal parts</li>
+<li>Conquer: If a subarray contains only one element, it is already sorted; Otherwise, recursively divide the subarrays further</li>
+<li>Merge: A function merge is used to combine two already sorted subarrays  B_1  and  B_2  into a single sorted array  B .</li>
+</ul>
+<h3 id="3-2-3-Code-Example"><a href="#3-2-3-Code-Example" class="headerlink" title="3.2.3 Code Example"></a>3.2.3 <strong>Code Example</strong></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">merge</span><span class="params">(<span class="type">int</span> iDatas[], <span class="type">int</span> iBuffer[], <span class="type">int</span> iLow, <span class="type">int</span> iMid, <span class="type">int</span> iHigh)</span> &#123;</span><br><span class="line">	<span class="type">int</span> i = iLow;</span><br><span class="line">	<span class="type">int</span> j = iMid + <span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> k = iLow;</span><br><span class="line">	<span class="keyword">while</span> ((i &lt;= iMid) &amp;&amp; (j &lt;= iHigh)) &#123;</span><br><span class="line">		<span class="keyword">if</span> (iDatas[i] &lt;= iDatas[j]) &#123;</span><br><span class="line">			iBuffer[k++] = iDatas[i++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			iBuffer[k++] = iDatas[j++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// Copy the remaining elements</span></span><br><span class="line">		<span class="keyword">if</span> (i &lt;= iMid) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> ii = i; ii &lt; iMid; ii++) &#123;</span><br><span class="line">				iBuffer[k++] = iDatas[ii];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> jj = j; jj &lt;= iHigh; jj++) &#123;</span><br><span class="line">				iBuffer[k++] = iDatas[jj];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">mergeSort</span><span class="params">(<span class="type">int</span> iDatas[], <span class="type">int</span> iBuffer[], <span class="type">int</span> iLow, <span class="type">int</span> iHigh)</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (iHigh &gt; iLow) &#123; <span class="comment">// Base case for recursion</span></span><br><span class="line">		<span class="type">int</span> iMid = (iLow + iHigh) / <span class="number">2</span>; <span class="comment">// Divide the array</span></span><br><span class="line">		mergeSort(iDatas, iBuffer, iLow, iMid); <span class="comment">// Recursive call for left half</span></span><br><span class="line">		mergeSort(iDatas, iBuffer, iMid+<span class="number">1</span>, iHigh); <span class="comment">// Recursive call for right half</span></span><br><span class="line">		merge(iDatas, iBuffer, iLow, iMid, iHigh); <span class="comment">// Merge the two halves</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = iLow; i &lt;= iHigh; i++) &#123;</span><br><span class="line">			iDatas[i] = iBuffer[i]; <span class="comment">// Copy sorted elements back to original array</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="3-3-Quick-Sort"><a href="#3-3-Quick-Sort" class="headerlink" title="3.3 Quick Sort"></a>3.3 Quick Sort</h2><h3 id="3-3-1-Problem-Statement"><a href="#3-3-1-Problem-Statement" class="headerlink" title="3.3.1 Problem Statement"></a>3.3.1 <strong>Problem Statement</strong></h3><p>classic sort problem</p>
+<h3 id="3-3-2-Algorithm-and-Approach"><a href="#3-3-2-Algorithm-and-Approach" class="headerlink" title="3.3.2 Algorithm and Approach"></a>3.3.2 <strong>Algorithm and Approach</strong></h3><ul>
+<li><p>Divide: Split the original array  A  into two equal parts and one pivot element</p>
+<p>  <strong>Quick Sort</strong> is a <strong>Divide and Conquer</strong> algorithm that sorts an array by selecting a <strong>pivot</strong> and partitioning the array into two subarrays:</p>
+<ol>
+<li><p><strong>Elements smaller than the pivot</strong> go to the left.</p>
+</li>
+<li><p><strong>Elements greater than the pivot</strong> go to the right.</p>
+</li>
+</ol>
+</li>
+<li><p>Conquer: If a subarray contains only one element, it is already sorted; Otherwise, recursively divide the subarrays further</p>
+</li>
+</ul>
+<aside>
+💡
+
+**Quick Sort does not have a merge step**. 
+
+Merge Sort keeps dividing into two segments.
+Quick Sort keeps dividing into three segments.
+
+</aside>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>Sorting Algorithm</strong></th>
+<th><strong>Uses Merging?</strong></th>
+<th><strong>Key Operation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quick Sort</strong></td>
+<td>❌ <strong>No</strong></td>
+<td><strong>Partitioning</strong> (placing smaller elements on the left, larger on the right)</td>
+</tr>
+<tr>
+<td><strong>Merge Sort</strong></td>
+<td>✅ <strong>Yes</strong></td>
+<td><strong>Merging</strong> (combining sorted subarrays back together)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="3-3-3-Code-Example"><a href="#3-3-3-Code-Example" class="headerlink" title="3.3.3 Code Example"></a>3.3.3 <strong>Code Example</strong></h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Quick Sort</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; iValue1, <span class="type">int</span>&amp; iValue2)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> iTemp = iValue1;</span><br><span class="line">	iValue1 = iValue2;</span><br><span class="line">	iValue2 = iTemp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">partition</span><span class="params">(<span class="type">int</span> iDatas[], <span class="type">int</span> iLow, <span class="type">int</span> iHigh)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i = iLow + <span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> j = iHigh;</span><br><span class="line">	<span class="keyword">while</span> (i != j) &#123;</span><br><span class="line">		<span class="keyword">while</span> ((iDatas[iLow] &gt;= iDatas[i]) &amp;&amp; (i &lt;= iHigh)) &#123;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> ((iDatas[iLow] &lt;= iDatas[j]) &amp;&amp; (j &gt;= iHigh)) &#123;</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (i &lt; j) &#123;</span><br><span class="line">			<span class="built_in">swap</span>(iDatas[i], iDatas[j]);</span><br><span class="line">			i++;</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">swap</span>(iDatas[iLow], iDatas[j]);</span><br><span class="line">	<span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quickSort</span><span class="params">(<span class="type">int</span> iDatas[], <span class="type">int</span> iLow, <span class="type">int</span> iHigh)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (iHigh &gt; iLow) &#123;</span><br><span class="line">		<span class="type">int</span> k = <span class="built_in">partition</span>(iDatas, iLow, iHigh);</span><br><span class="line">		<span class="built_in">quickSort</span>(iDatas, iLow, k - <span class="number">1</span>);</span><br><span class="line">		<span class="built_in">quickSort</span>(iDatas, k + <span class="number">1</span>, iHigh);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-4-Time-Complexity-Analysis"><a href="#3-3-4-Time-Complexity-Analysis" class="headerlink" title="3.3.4 Time Complexity Analysis"></a>3.3.4 Time Complexity Analysis</h3><ol>
+<li><strong>Average-Case/Best-Case Scenario</strong>: The best case occurs when the pivot always divides the array into two equal or nearly equal halves, such as when the array is already sorted or the pivot selection ensures balanced partitions (e.g., the median element).$O(nlogn)$</li>
+<li><strong>Worst-Case Scenario</strong>: The worst case occurs when the pivot consistently produces highly unbalanced partitions, such as when the array is already sorted (in ascending or descending order) and the pivot is the smallest or largest element.$O(n^2)$</li>
+</ol>
+<h3 id="3-3-5-Quick-Sort-improvement"><a href="#3-3-5-Quick-Sort-improvement" class="headerlink" title="3.3.5 Quick Sort improvement"></a>3.3.5 Quick Sort improvement</h3><p><strong>QuickSort’s performance depends on the choice of pivot.</strong> Randomized QuickSort mitigates this by randomly selecting the pivot, ensuring a more balanced partition on average and reducing the likelihood of worst-case scenarios.</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">randomizedQuickSort</span><span class="params">(<span class="type">int</span> iDatas[], <span class="type">int</span> iLeft, <span class="type">int</span> iRight)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (iRight &gt; iLeft) &#123;</span><br><span class="line">        srand((<span class="type">unsigned</span>)time(<span class="literal">NULL</span>));</span><br><span class="line">        <span class="type">int</span> iAncharIndex = rand() % (iRight - iLeft + <span class="number">1</span>) + iLeft;</span><br><span class="line">        swap(iDatas[iAncharIndex], iDatas[iLeft]);</span><br><span class="line">        <span class="type">int</span> k = partition(iDatas, iLeft, iRight);</span><br><span class="line">        randomizedQuickSort(iDatas, iLeft, k<span class="number">-1</span>); <span class="comment">// Sort the left subarray A1</span></span><br><span class="line">        randomizedQuickSort(iDatas, k+<span class="number">1</span>, iRight); <span class="comment">// Sort the right subarray A3</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-Inversion-Pair-Problem"><a href="#3-4-Inversion-Pair-Problem" class="headerlink" title="3.4 Inversion Pair Problem"></a>3.4 Inversion Pair Problem</h2><h3 id="3-4-1-Problem-Statement"><a href="#3-4-1-Problem-Statement" class="headerlink" title="3.4.1 Problem Statement"></a>3.4.1 <strong>Problem Statement</strong></h3><p>Given an array <strong>A</strong> of <strong>n</strong> distinct non-negative integers, an <strong>inversion pair</strong> (A[i], A[j]) is defined as a pair where  i &lt; j  and  A[i] &gt; A[j] . The task is to count the number of such inversion pairs in the array.</p>
+<p><strong>Input</strong></p>
+<p>Each test case consists of two lines:</p>
+<ol>
+<li><p>The first line contains an integer  n  ( 1 \leq n \leq 100000 ), representing the number of elements in the array.</p>
+</li>
+<li><p>The second line contains <strong>n</strong> space-separated integers.</p>
+</li>
+<li><p>The last input line is <strong>-1</strong>, indicating the end of input.</p>
+</li>
+</ol>
+<p><strong>Output</strong></p>
+<p>For each test case, output a single integer in a new line, representing the total number of inversion pairs in the array.</p>
+<h3 id="3-4-2-Algorithm-and-Approach"><a href="#3-4-2-Algorithm-and-Approach" class="headerlink" title="3.4.2 Algorithm and Approach"></a>3.4.2 <strong>Algorithm and Approach</strong></h3><ul>
+<li>Divide: Split the original array  A  into two equal parts</li>
+<li>Conquer: If a subarray contains only one element, it don’t include the inversion pairs; Otherwise, recursively divide the subarrays further</li>
+<li>Merge: The approach is divided into three main components (C1, C2, and C3), and the total inversion count C is the sum of these components: $<em>C=C_1+C_2+C_3</em>$<ul>
+<li>C1: Inversions within the left segment of the array</li>
+<li>C2: Inversions within the right segment of the array</li>
+<li>C3: Inversions across the two segments</li>
+</ul>
+</li>
+</ul>
+<aside>
+💡
+
+How to compute C3? The key insight is to use the merge process of merge sort. 
+
+</aside>
+
+<p><img src="attachment:1a8628fe-59b6-48c3-aaab-6bfcdd8f1d29:image.png" alt="easy to understand explanation"></p>
+<p>easy to understand explanation</p>
+<h3 id="3-4-3-Code-Example"><a href="#3-4-3-Code-Example" class="headerlink" title="3.4.3 Code Example"></a>3.4.3 <strong>Code Example</strong></h3><p>main:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">long</span> <span class="title function_">reverseOrderPairs</span><span class="params">(<span class="type">int</span> iDatas[], <span class="type">int</span> iBuffer[], <span class="type">int</span> iLow, <span class="type">int</span> iHigh)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (iLow == iHigh) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// Base case: single element</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> iMid = (iLow + iHigh) / <span class="number">2</span>;</span><br><span class="line">    <span class="type">long</span> C1, C2, C3;</span><br><span class="line"></span><br><span class="line">    C1 = reverseOrderPairs(iDatas, iBuffer, iLow, iMid); <span class="comment">// Count inversions in the left segment</span></span><br><span class="line">    C2 = reverseOrderPairs(iDatas, iBuffer, iMid + <span class="number">1</span>, iHigh); <span class="comment">// Count inversions in the right segment</span></span><br><span class="line">    C3 = MergeReverse(iDatas, iBuffer, iLow, iMid, iHigh); <span class="comment">// Count inversions across segments</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = iLow; i &lt;= iHigh; i++) <span class="comment">// Copy back the sorted result to the original array</span></span><br><span class="line">        iDatas[i] = iBuffer[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> C1 + C2 + C3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>merge step:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Merge the segments iData[iLow:iMid] and iData[iMid+1:iHigh] into iBuffer[iLow:iHigh],</span></span><br><span class="line"><span class="comment">// and count the number of inversions within the merged segments</span></span><br><span class="line"><span class="type">long</span> <span class="title function_">MergeReverse</span><span class="params">(<span class="type">int</span> iDatas[], <span class="type">int</span> iBuffer[], <span class="type">int</span> iLow, <span class="type">int</span> iMid, <span class="type">int</span> iHigh)</span> &#123;</span><br><span class="line">    <span class="type">int</span> i = iLow, j = iMid + <span class="number">1</span>, k = iLow;</span><br><span class="line">    <span class="type">long</span> iCrossPairs = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt;= iMid &amp;&amp; j &lt;= iHigh) &#123;</span><br><span class="line">        <span class="keyword">if</span> (iDatas[i] &lt;= iDatas[j]) &#123;</span><br><span class="line">            iBuffer[k++] = iDatas[i++];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// Count inversion pairs: if iDatas[i] &gt; iDatas[j], all remaining elements in the left segment</span></span><br><span class="line">            <span class="comment">// from i to iMid form inversion pairs with iDatas[j]</span></span><br><span class="line">            iCrossPairs += iMid - i + <span class="number">1</span>;</span><br><span class="line">            iBuffer[k++] = iDatas[j++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt;= iMid) <span class="comment">// Copy remaining elements in the left segment [iLow:iMid]</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> ii = i; ii &lt;= iMid; ii++)</span><br><span class="line">            iBuffer[k++] = iDatas[ii];</span><br><span class="line">    <span class="keyword">else</span> <span class="comment">// Copy remaining elements in the right segment [iMid+1:iHigh]</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> jj = j; jj &lt;= iHigh; jj++)</span><br><span class="line">            iBuffer[k++] = iDatas[jj];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> iCrossPairs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-5-Binary-Search"><a href="#3-5-Binary-Search" class="headerlink" title="3.5 Binary Search"></a>3.5 Binary Search</h2><p>Any given set containing n integers, and n integers have been arranged in ascending order. Given any integer k, judge whether the integer is in the set. classic divide and conquer problem(❌merge step)</p>
+]]></content>
       <categories>
         <category>Algorithm Design and Analysis</category>
       </categories>
       <tags>
         <tag>Algorithm</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Divide and Conquer</title>
-    <url>/2025/02/24/Divide-and-Conquer-1/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
