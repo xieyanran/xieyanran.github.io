@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1. The main idea of Dynamic Programming algorithm 1.1 Prologue——Number Triangle Path Problem Given an isosceles right-angled number triangle, write a program to compute a path from the top to a specif">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🥼Dynamic Programming">
+<meta property="og:url" content="http://example.com/2025/02/26/Dynamic-Programming/index.html">
+<meta property="og:site_name" content="Yanran Xie&#39;s Blog">
+<meta property="og:description" content="1. The main idea of Dynamic Programming algorithm 1.1 Prologue——Number Triangle Path Problem Given an isosceles right-angled number triangle, write a program to compute a path from the top to a specif">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="attachment:04240348-eb66-4a0e-9390-1fae26814f6d:image.png">
+<meta property="og:image" content="attachment:26289fe2-4213-4336-804c-a1642b7fb994:image.png">
+<meta property="article:published_time" content="2025-02-26T13:37:13.000Z">
+<meta property="article:modified_time" content="2025-02-26T13:40:47.520Z">
+<meta property="article:author" content="Yanran Xie">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="attachment:04240348-eb66-4a0e-9390-1fae26814f6d:image.png">
+
+<link rel="canonical" href="http://example.com/2025/02/26/Dynamic-Programming/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>🥼Dynamic Programming | Yanran Xie's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yanran Xie's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/26/Dynamic-Programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanran Xie">
+      <meta itemprop="description" content="cyber trash">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanran Xie's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          🥼Dynamic Programming
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-02-26 21:37:13 / Modified: 21:40:47" itemprop="dateCreated datePublished" datetime="2025-02-26T21:37:13+08:00">2025-02-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm-Design-and-Analysis/" itemprop="url" rel="index"><span itemprop="name">Algorithm Design and Analysis</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="the-main-idea-of-dynamic-programming-algorithm">1. The main idea
+of Dynamic Programming algorithm</h1>
+<h2 id="prologuenumber-triangle-path-problem">1.1
+Prologue——<strong>Number Triangle Path Problem</strong></h2>
+<p>Given an isosceles right-angled number triangle, write a program to
+compute a path from the top to a specific position at the bottom such
+that the sum of the numbers along the path is maximized. It is assumed
+that at each step, one can move either straight down or diagonally down
+to the right. <span id="more"></span></p>
+<ul>
+<li>a[i][j] represents the number at row i and column j</li>
+<li>opt[i][j] records the maximum total sum of a path from the top to
+the position at row i , column j</li>
+</ul>
+<ol type="1">
+<li><span class="math inline">\(j=1\)</span> <span
+class="math inline">\(opt[i][j] = a[i][j] + opt[i-1][j]\)</span></li>
+<li><span class="math inline">\(j &gt; 1\)</span> <span
+class="math inline">\(opt[i][j] = a[i][j] + max(opt[i-1][j],
+opt[i-1][j-1])\)</span></li>
+</ol>
+<p>result: max{<span class="math inline">\(opt[N][i], 1 &lt;= i &lt;=
+N\)</span>}</p>
+<h2 id="background">1.2 Background</h2>
+<p>Dynamic programming is a branch of operations research. In the early
+1950s, the American mathematician R.E. Bellman and others proposed the
+famous <strong>principle of optimality</strong> while studying
+optimization problems in <strong>multistep decision processes</strong>.
+This principle transforms a multistage process into a series of
+single-stage problems and solves them sequentially by leveraging the
+relationships between stages. This led to the development of a new
+method for solving such optimization problems—<strong>dynamic
+programming</strong>.</p>
+<h2 id="important-definition">1.3 Important Definition</h2>
+<ul>
+<li><strong>State Representation:</strong> Represents the
+<strong>objective situation</strong> of the problem or system at the
+beginning of each stage. A stage may have multiple states, each
+represented as a tuple <strong>S(p₁, p₂, …, pₖ)</strong>:
+<strong>Parameters</strong> describe state attributes. <strong>Value
+domain</strong> represents state values or subproblem
+<strong>answers</strong>. Like: <span class="math inline">\(opt(i,
+j)\)</span></li>
+<li><strong>State Transition:</strong> In a <strong>multistage decision
+process</strong>, a decision sequence corresponds to a sequence of
+states, with each decision leading to a <strong>state
+transition</strong>. State transitions are described using a
+<strong>recursive equation</strong>, referred to as the <strong>state
+transition equation</strong>. Like: <span class="math inline">\(opt(i,
+j) = a[i][j] + max(opt(i-1,j), opt(i-1,j-1))\)</span>
+<ul>
+<li><strong>State Independence (No Aftereffect Property):</strong> Once
+the state of a certain stage is determined, the future development of
+this stage is <strong>independent</strong> of the states of all previous
+stages.</li>
+<li><strong>Principle of Optimality:</strong> A sub-strategy sequence of
+an <strong>optimal strategy sequence</strong> must always be
+<strong>optimal</strong> itself.</li>
+</ul></li>
+</ul>
+<h1
+id="typical-application-examples-of-dynamic-programming-algorithm">2.
+Typical application examples of Dynamic Programming algorithm</h1>
+<h2 id="matrix-multiplication-problem">2.1 Matrix multiplication
+problem</h2>
+<h3 id="problem-statement">2.1.1 <strong>Problem Statement</strong></h3>
+<p><strong>Problem Description:</strong></p>
+<p>Consider the multiplication of two matrices: <strong>C = A ×
+B</strong>. If matrix <strong>A</strong> has dimensions <strong>p ×
+r</strong> and matrix <strong>B</strong> has dimensions <strong>r ×
+q</strong>, then their product <strong>C</strong> will be a <strong>p ×
+q</strong> matrix, where each element <strong>(i, j)</strong> is given
+by. Thus, the number of scalar multiplications required for computing
+<strong>AB</strong> is <strong>p × r × q</strong>.</p>
+<p>If there are at least <strong>three</strong> matrices being
+multiplied together, the <strong>order of multiplication</strong>
+affects the total number of computations. For example, for three
+matrices, there are two possible ways to insert parentheses:</p>
+<ol type="1">
+<li><p><strong>((A₁ × A₂) × A₃)</strong></p></li>
+<li><p><strong>(A₁ × (A₂ × A₃))</strong></p></li>
+</ol>
+<p>Let <strong>A₁, A₂, A₃</strong> have dimensions <strong>p₀ × p₁, p₁ ×
+p₂, p₂ × p₃</strong>, respectively. The number of scalar multiplications
+for each order is: <strong>((A₁ × A₂) × A₃); (A₁ × (A₂ ×
+A₃))</strong>.</p>
+<p>The goal is to find the <strong>optimal parenthesization</strong> for
+<strong>n</strong> given matrices <strong>A₁, A₂, …, Aₙ</strong>, with
+dimensions <strong>p₀ × p₁, p₁ × p₂, …, pₙ₋₁ × pₙ</strong>, such that
+the <strong>total number of scalar multiplications is
+minimized</strong>.</p>
+<h3 id="algorithm-and-approach">2.1.2 <strong>Algorithm and
+Approach</strong></h3>
+<aside>
+<p>💡</p>
+<p>State representation is essentially a parameterized description of
+subproblems.</p>
+</aside>
+<ul>
+<li><p><strong>State Transition:</strong></p>
+<p><span class="math inline">\(A[i][j]\)</span>the number of
+multiplications corresponding to the optimal computation order: <span
+class="math inline">\(m(i,j)\)</span></p></li>
+</ul>
+<aside>
+<p>💡</p>
+<p>It establishes the relationship between the optimal solution of the
+original problem and the optimal solutions of its subproblems.</p>
+</aside>
+<ul>
+<li><p><strong>State Transition:</strong></p>
+<p>Given n rectangles <span class="math inline">\(A₁, …, Aₙ\)</span>,
+where each rectangle’s side length is <span
+class="math inline">\(p_{i-1} × p_i\)</span>, and one of their complete
+doubling square schemes:</p>
+<p>((A₁, A₂, …, Aₖ)) ((Aₖ₊₁, Aₖ₊₂, …, Aₙ)) : <span
+class="math inline">\(a\)</span></p>
+<p>(A₁, A₂, …, Aₖ): <span class="math inline">\(b\)</span></p>
+<p>((Aₖ₊₁, Aₖ₊₂, …, Aₙ)): <span class="math inline">\(c\)</span></p>
+<p><span class="math inline">\(a = b + c + P_0P_kP_n\)</span></p>
+<p><strong>a</strong> — is not the optimal value!!</p>
+<p>If <strong>a</strong> is the optimal value, what about
+<strong>b</strong> and <strong>c</strong>?</p>
+<p><strong>provement:</strong></p>
+<p>Construct another doubling square scheme for the original
+problem,</p>
+<p><span class="math inline">\(a&#39; = b&#39; + c + P_0P_kP_n\)</span>
+<span class="math inline">\(a = b + c + P_0P_kP_n\)</span> <span
+class="math inline">\(b&#39; &lt; b\)</span></p>
+<p>so, <span class="math inline">\(a&#39; &lt; a\)</span></p></li>
+</ul>
+<p><span
+class="math inline">\(m(i,j)=m(i,k)+m(k+1,j)+P_{i-1}P_kP_{j}\)</span>,
+so <span class="math inline">\(m(i, j) =
+\begin{cases}
+0 &amp; \text{if } i = j \\
+\min_{i \leq k &lt; j} \{ m(i, k) + m(k + 1, j) + p_{i-1} p_k p_j \}
+&amp; \text{if } i &lt; j
+\end{cases}\)</span></p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>A1=(a0a1)</th>
+<th>A2=(a1a2)</th>
+<th>A3=(a2a3)</th>
+<th>A4</th>
+<th>A5</th>
+<th>A6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30×35</td>
+<td>35×15</td>
+<td>15×5</td>
+<td>5×10</td>
+<td>10×20</td>
+<td>20×25</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>15750=(a0a1a2)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s=1</td>
+<td>7875</td>
+<td>9375</td>
+<td>11875</td>
+<td>15125</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td>0</td>
+<td><strong>2625</strong>=(a1a2a3)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s=2</td>
+<td>4375</td>
+<td>7125</td>
+<td>10500</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>750</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s=3</td>
+<td>2500</td>
+<td>5375</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>**1000</td>
+<td></td>
+</tr>
+<tr>
+<td>s=4**</td>
+<td>3500</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>s=5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="memoization-method">2.1.3 memoization method</h3>
+<blockquote>
+<p>The memoization method stores the solutions to solved subproblems in
+a table. When the same problem needs to be solved again, the answer can
+be retrieved directly from the table without recalculating. If the
+solution has not been computed, the recursive solving process is called
+to calculate it.</p>
+</blockquote>
+<h2 id="shortest-path-in-a-multistage-graph">2.2 Shortest Path in a
+Multistage Graph</h2>
+<h3 id="problem-statement-1">2.2.1 <strong>Problem
+Statement</strong></h3>
+<p>Let <span class="math inline">\(G = (V, E)\)</span> be a weighted
+directed graph, where the vertex set <span
+class="math inline">\(V\)</span> is partitioned into <span
+class="math inline">\(k\)</span> (with <span class="math inline">\(k
+&gt; 2\)</span> ) disjoint subsets <span
+class="math inline">\(V_i\)</span> (for <span class="math inline">\(1
+\leq i \leq k\)</span> ). The subsets <span
+class="math inline">\(V_1\)</span> and <span
+class="math inline">\(V_k\)</span> each contain only one vertex, s
+(called the source) and t (called the sink), respectively. All edges
+(<span class="math inline">\(u, v)\)</span> in the graph have their
+start and end vertices in adjacent subsets <span
+class="math inline">\(V_i\)</span> and <span
+class="math inline">\(V_{i+1}\)</span> , where <span
+class="math inline">\(u \in V_i\)</span> , <span class="math inline">\(v
+\in V_{i+1}\)</span> , and each edge <span class="math inline">\((u,
+v)\)</span> has a positive weight <span class="math inline">\(w(u,
+v)\)</span> .</p>
+<figure>
+<img src="attachment:04240348-eb66-4a0e-9390-1fae26814f6d:image.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p>Design an algorithm to find the minimum weight path from the source
+<span class="math inline">\(s\)</span> to the sink <span
+class="math inline">\(t\)</span> .</p>
+<h3 id="algorithm-and-approach-1">2.2.2 <strong>Algorithm and
+Approach</strong></h3>
+<ul>
+<li><p><strong>State Representation:</strong> <span
+class="math inline">\(\text{d}(s, v(i, p))\)</span> represents the
+shortest path length from the source s to the vertex <span
+class="math inline">\(v(i, p)\)</span> . <span
+class="math inline">\(i\)</span> represents the segment index. <span
+class="math inline">\(p\)</span> represents the vertex index within the
+<span class="math inline">\(i\)</span> -th segment.</p></li>
+<li><p><strong>State Transition:</strong> need the provement</p>
+<p><span class="math inline">\(W(i, p) =
+  \begin{cases}
+  0, &amp; i = 1 \\
+  \min_{q \in V_{i-1}, (q, p) \in E} \{ W(i-1, q) + w(q, p) \}, &amp; i
+&gt; 1
+  \end{cases}\)</span></p></li>
+</ul>
+<figure>
+<img src="attachment:26289fe2-4213-4336-804c-a1642b7fb994:image.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p><span class="math inline">\(W[i,p]\)</span> cannot be accessed. Use
+the predecessor s<em>s</em> to retrieve the shortest path record <span
+class="math inline">\(v(i,p)\)</span></p>
+<h2 id="longest-common-subsequence">2.3 Longest Common Subsequence</h2>
+<h3 id="problem-statement-2">2.3.1 <strong>Problem
+Statement</strong></h3>
+<p>Assume there is another set of keys <span class="math inline">\(X =
+\{x_1, x_2, \dots, x_m\}\)</span> and <span class="math inline">\(Y =
+\{y_1, y_2, \dots, y_n\}\)</span> , which leads to the optimal binary
+search tree for this set of keys. suppose <span class="math inline">\(Z
+= \{B, C, D, B\}\)</span> is the set of keys <span
+class="math inline">\(X = \{A, B, C, B, D, A, B\}\)</span> , and the
+probability of the keys under the tree is {2, 3, 5, 7} .</p>
+<h3 id="algorithm-and-approach-2">2.3.2 <strong>Algorithm and
+Approach</strong></h3>
+<ul>
+<li><strong>State Representation: <span class="math inline">\(C(m,
+n)\)</span></strong> represents the length of the longest common
+subsequence (LCS) of the two original sequences. Val(i, p), 1 ≤ i ≤ n, 0
+≤ p ≤ C</li>
+<li><strong>State Transition:</strong> <span
+class="math inline">\(c[i][j] =
+\begin{cases}
+0 &amp; i = 0, j = 0 \\
+c[i - 1][j - 1] + 1 &amp; i, j &gt; 0; x_i = y_j \\
+\max\{c[i][j - 1], c[i - 1][j]\} &amp; i, j &gt; 0; x_i \neq y_j
+\end{cases}\)</span></li>
+</ul>
+<h3 id="code-example">2.3.3 <strong>Code Example</strong></h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> strX[<span class="number">100005</span>];</span><br><span class="line"><span class="type">int</span> strY[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> DP[<span class="number">1005</span>][<span class="number">1005</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">DP_memo</span><span class="params">(<span class="type">int</span>* strX, <span class="type">int</span>* strY)</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (strX[i - <span class="number">1</span>] == strY[j - <span class="number">1</span>]) &#123;</span><br><span class="line">				DP[i][j] = DP[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (DP[i - <span class="number">1</span>][j] &gt; DP[i][j - <span class="number">1</span>]) &#123;</span><br><span class="line">				DP[i][j] = DP[i - <span class="number">1</span>][j];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				DP[i][j] = DP[i][j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> DP[n][n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="built_in">memset</span>(DP, <span class="number">0</span>, <span class="keyword">sizeof</span>(DP));</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;n; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; strX[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; strY[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; DP_memo(strX, strY) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="knapsack-problem">2.4 0-1 Knapsack Problem</h2>
+<h3 id="problem-statement-3">2.3.1 <strong>Problem
+Statement</strong></h3>
+<p>Given n items and a knapsack, where the weight of item <span
+class="math inline">\(i\)</span> is W<span
+class="math inline">\(_i\)</span> and its value is <span
+class="math inline">\(V_i\)</span> , and the capacity of the knapsack is
+<span class="math inline">\(C\)</span> , the problem is to determine
+which items to include in the knapsack in order to maximize the total
+value of the items placed in the knapsack.</p>
+<h3 id="algorithm-and-approach-3">2.3.2 <strong>Algorithm and
+Approach</strong></h3>
+<ul>
+<li><strong>State Representation:</strong> The subproblem can be
+determined by two parameters: the set of items to be considered for
+packing and the available capacity of the knapsack. <span
+class="math inline">\(Val(i, p), 1 ≤ i ≤ n, 0 ≤ p ≤ C\)</span> This
+represents the maximum value that can be achieved with the capacity of
+item i and the remaining capacity p. The capacity constraint is {1, 2,
+…, i}, which corresponds to the largest possible subset of items.</li>
+<li><strong>State Transition: i = 1:</strong> <span
+class="math inline">\(Val(1, p) =
+\begin{cases}
+0, &amp; 0 \leq p &lt; w_1 \\
+v_1, &amp; p \geq w_1
+\end{cases}\)</span> <strong>i &gt; 1:</strong> <span
+class="math inline">\(Val(i, p) =
+\begin{cases}
+Val(i-1, p), &amp; 0 \leq p &lt; w_i \\
+\max(Val(i-1, p), Val(i-1, p - w_i) + v_i), &amp; p \geq w_i
+\end{cases}\)</span> where <span class="math inline">\(w_i\)</span> is
+the weight of item <span class="math inline">\(i\)</span>, and <span
+class="math inline">\(v_i\)</span> is the value of item <span
+class="math inline">\(i\)</span>.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+            <i class="fa fa-tag"></i>
+          <div class="post-tags">
+              <a href="/tags/Algorithm/" rel="tag"> Algorithm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/02/24/Divide-and-Conquer-The-closest-pairs-of-points/" rel="prev" title="🥽 Divide and Conquer(The closest pairs of points)">
+      <i class="fa fa-chevron-left"></i> 🥽 Divide and Conquer(The closest pairs of points)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#the-main-idea-of-dynamic-programming-algorithm"><span class="nav-number">1.</span> <span class="nav-text">1. The main idea
+of Dynamic Programming algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#prologuenumber-triangle-path-problem"><span class="nav-number">1.1.</span> <span class="nav-text">1.1
+Prologue——Number Triangle Path Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#background"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#important-definition"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Important Definition</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typical-application-examples-of-dynamic-programming-algorithm"><span class="nav-number">2.</span> <span class="nav-text">2.
+Typical application examples of Dynamic Programming algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#matrix-multiplication-problem"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Matrix multiplication
+problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#problem-statement"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 Problem Statement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#algorithm-and-approach"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 Algorithm and
+Approach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memoization-method"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 memoization method</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shortest-path-in-a-multistage-graph"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Shortest Path in a
+Multistage Graph</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#problem-statement-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 Problem
+Statement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#algorithm-and-approach-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 Algorithm and
+Approach</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#longest-common-subsequence"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Longest Common Subsequence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#problem-statement-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 Problem
+Statement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#algorithm-and-approach-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 Algorithm and
+Approach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-example"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 Code Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#knapsack-problem"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 0-1 Knapsack Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#problem-statement-3"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.3.1 Problem
+Statement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#algorithm-and-approach-3"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.3.2 Algorithm and
+Approach</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yanran Xie</p>
+  <div class="site-description" itemprop="description">cyber trash</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yanran Xie</span>
+</div>
+
+<!--
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

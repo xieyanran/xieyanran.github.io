@@ -462,4 +462,417 @@ existing result.</p>
         <tag>Algorithm</tag>
       </tags>
   </entry>
+  <entry>
+    <title>🥼Dynamic Programming</title>
+    <url>/2025/02/26/Dynamic-Programming/</url>
+    <content><![CDATA[<h1 id="the-main-idea-of-dynamic-programming-algorithm">1. The main idea
+of Dynamic Programming algorithm</h1>
+<h2 id="prologuenumber-triangle-path-problem">1.1
+Prologue——<strong>Number Triangle Path Problem</strong></h2>
+<p>Given an isosceles right-angled number triangle, write a program to
+compute a path from the top to a specific position at the bottom such
+that the sum of the numbers along the path is maximized. It is assumed
+that at each step, one can move either straight down or diagonally down
+to the right. <span id="more"></span></p>
+<ul>
+<li>a[i][j] represents the number at row i and column j</li>
+<li>opt[i][j] records the maximum total sum of a path from the top to
+the position at row i , column j</li>
+</ul>
+<ol type="1">
+<li><span class="math inline">\(j=1\)</span> <span
+class="math inline">\(opt[i][j] = a[i][j] + opt[i-1][j]\)</span></li>
+<li><span class="math inline">\(j &gt; 1\)</span> <span
+class="math inline">\(opt[i][j] = a[i][j] + max(opt[i-1][j],
+opt[i-1][j-1])\)</span></li>
+</ol>
+<p>result: max{<span class="math inline">\(opt[N][i], 1 &lt;= i &lt;=
+N\)</span>}</p>
+<h2 id="background">1.2 Background</h2>
+<p>Dynamic programming is a branch of operations research. In the early
+1950s, the American mathematician R.E. Bellman and others proposed the
+famous <strong>principle of optimality</strong> while studying
+optimization problems in <strong>multistep decision processes</strong>.
+This principle transforms a multistage process into a series of
+single-stage problems and solves them sequentially by leveraging the
+relationships between stages. This led to the development of a new
+method for solving such optimization problems—<strong>dynamic
+programming</strong>.</p>
+<h2 id="important-definition">1.3 Important Definition</h2>
+<ul>
+<li><strong>State Representation:</strong> Represents the
+<strong>objective situation</strong> of the problem or system at the
+beginning of each stage. A stage may have multiple states, each
+represented as a tuple <strong>S(p₁, p₂, …, pₖ)</strong>:
+<strong>Parameters</strong> describe state attributes. <strong>Value
+domain</strong> represents state values or subproblem
+<strong>answers</strong>. Like: <span class="math inline">\(opt(i,
+j)\)</span></li>
+<li><strong>State Transition:</strong> In a <strong>multistage decision
+process</strong>, a decision sequence corresponds to a sequence of
+states, with each decision leading to a <strong>state
+transition</strong>. State transitions are described using a
+<strong>recursive equation</strong>, referred to as the <strong>state
+transition equation</strong>. Like: <span class="math inline">\(opt(i,
+j) = a[i][j] + max(opt(i-1,j), opt(i-1,j-1))\)</span>
+<ul>
+<li><strong>State Independence (No Aftereffect Property):</strong> Once
+the state of a certain stage is determined, the future development of
+this stage is <strong>independent</strong> of the states of all previous
+stages.</li>
+<li><strong>Principle of Optimality:</strong> A sub-strategy sequence of
+an <strong>optimal strategy sequence</strong> must always be
+<strong>optimal</strong> itself.</li>
+</ul></li>
+</ul>
+<h1
+id="typical-application-examples-of-dynamic-programming-algorithm">2.
+Typical application examples of Dynamic Programming algorithm</h1>
+<h2 id="matrix-multiplication-problem">2.1 Matrix multiplication
+problem</h2>
+<h3 id="problem-statement">2.1.1 <strong>Problem Statement</strong></h3>
+<p><strong>Problem Description:</strong></p>
+<p>Consider the multiplication of two matrices: <strong>C = A ×
+B</strong>. If matrix <strong>A</strong> has dimensions <strong>p ×
+r</strong> and matrix <strong>B</strong> has dimensions <strong>r ×
+q</strong>, then their product <strong>C</strong> will be a <strong>p ×
+q</strong> matrix, where each element <strong>(i, j)</strong> is given
+by. Thus, the number of scalar multiplications required for computing
+<strong>AB</strong> is <strong>p × r × q</strong>.</p>
+<p>If there are at least <strong>three</strong> matrices being
+multiplied together, the <strong>order of multiplication</strong>
+affects the total number of computations. For example, for three
+matrices, there are two possible ways to insert parentheses:</p>
+<ol type="1">
+<li><p><strong>((A₁ × A₂) × A₃)</strong></p></li>
+<li><p><strong>(A₁ × (A₂ × A₃))</strong></p></li>
+</ol>
+<p>Let <strong>A₁, A₂, A₃</strong> have dimensions <strong>p₀ × p₁, p₁ ×
+p₂, p₂ × p₃</strong>, respectively. The number of scalar multiplications
+for each order is: <strong>((A₁ × A₂) × A₃); (A₁ × (A₂ ×
+A₃))</strong>.</p>
+<p>The goal is to find the <strong>optimal parenthesization</strong> for
+<strong>n</strong> given matrices <strong>A₁, A₂, …, Aₙ</strong>, with
+dimensions <strong>p₀ × p₁, p₁ × p₂, …, pₙ₋₁ × pₙ</strong>, such that
+the <strong>total number of scalar multiplications is
+minimized</strong>.</p>
+<h3 id="algorithm-and-approach">2.1.2 <strong>Algorithm and
+Approach</strong></h3>
+<aside>
+<p>💡</p>
+<p>State representation is essentially a parameterized description of
+subproblems.</p>
+</aside>
+<ul>
+<li><p><strong>State Transition:</strong></p>
+<p><span class="math inline">\(A[i][j]\)</span>the number of
+multiplications corresponding to the optimal computation order: <span
+class="math inline">\(m(i,j)\)</span></p></li>
+</ul>
+<aside>
+<p>💡</p>
+<p>It establishes the relationship between the optimal solution of the
+original problem and the optimal solutions of its subproblems.</p>
+</aside>
+<ul>
+<li><p><strong>State Transition:</strong></p>
+<p>Given n rectangles <span class="math inline">\(A₁, …, Aₙ\)</span>,
+where each rectangle’s side length is <span
+class="math inline">\(p_{i-1} × p_i\)</span>, and one of their complete
+doubling square schemes:</p>
+<p>((A₁, A₂, …, Aₖ)) ((Aₖ₊₁, Aₖ₊₂, …, Aₙ)) : <span
+class="math inline">\(a\)</span></p>
+<p>(A₁, A₂, …, Aₖ): <span class="math inline">\(b\)</span></p>
+<p>((Aₖ₊₁, Aₖ₊₂, …, Aₙ)): <span class="math inline">\(c\)</span></p>
+<p><span class="math inline">\(a = b + c + P_0P_kP_n\)</span></p>
+<p><strong>a</strong> — is not the optimal value!!</p>
+<p>If <strong>a</strong> is the optimal value, what about
+<strong>b</strong> and <strong>c</strong>?</p>
+<p><strong>provement:</strong></p>
+<p>Construct another doubling square scheme for the original
+problem,</p>
+<p><span class="math inline">\(a&#39; = b&#39; + c + P_0P_kP_n\)</span>
+<span class="math inline">\(a = b + c + P_0P_kP_n\)</span> <span
+class="math inline">\(b&#39; &lt; b\)</span></p>
+<p>so, <span class="math inline">\(a&#39; &lt; a\)</span></p></li>
+</ul>
+<p><span
+class="math inline">\(m(i,j)=m(i,k)+m(k+1,j)+P_{i-1}P_kP_{j}\)</span>,
+so <span class="math inline">\(m(i, j) =
+\begin{cases}
+0 &amp; \text{if } i = j \\
+\min_{i \leq k &lt; j} \{ m(i, k) + m(k + 1, j) + p_{i-1} p_k p_j \}
+&amp; \text{if } i &lt; j
+\end{cases}\)</span></p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>A1=(a0a1)</th>
+<th>A2=(a1a2)</th>
+<th>A3=(a2a3)</th>
+<th>A4</th>
+<th>A5</th>
+<th>A6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30×35</td>
+<td>35×15</td>
+<td>15×5</td>
+<td>5×10</td>
+<td>10×20</td>
+<td>20×25</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>15750=(a0a1a2)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s=1</td>
+<td>7875</td>
+<td>9375</td>
+<td>11875</td>
+<td>15125</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td>0</td>
+<td><strong>2625</strong>=(a1a2a3)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s=2</td>
+<td>4375</td>
+<td>7125</td>
+<td>10500</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>750</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>s=3</td>
+<td>2500</td>
+<td>5375</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>**1000</td>
+<td></td>
+</tr>
+<tr>
+<td>s=4**</td>
+<td>3500</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>s=5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="memoization-method">2.1.3 memoization method</h3>
+<blockquote>
+<p>The memoization method stores the solutions to solved subproblems in
+a table. When the same problem needs to be solved again, the answer can
+be retrieved directly from the table without recalculating. If the
+solution has not been computed, the recursive solving process is called
+to calculate it.</p>
+</blockquote>
+<h2 id="shortest-path-in-a-multistage-graph">2.2 Shortest Path in a
+Multistage Graph</h2>
+<h3 id="problem-statement-1">2.2.1 <strong>Problem
+Statement</strong></h3>
+<p>Let <span class="math inline">\(G = (V, E)\)</span> be a weighted
+directed graph, where the vertex set <span
+class="math inline">\(V\)</span> is partitioned into <span
+class="math inline">\(k\)</span> (with <span class="math inline">\(k
+&gt; 2\)</span> ) disjoint subsets <span
+class="math inline">\(V_i\)</span> (for <span class="math inline">\(1
+\leq i \leq k\)</span> ). The subsets <span
+class="math inline">\(V_1\)</span> and <span
+class="math inline">\(V_k\)</span> each contain only one vertex, s
+(called the source) and t (called the sink), respectively. All edges
+(<span class="math inline">\(u, v)\)</span> in the graph have their
+start and end vertices in adjacent subsets <span
+class="math inline">\(V_i\)</span> and <span
+class="math inline">\(V_{i+1}\)</span> , where <span
+class="math inline">\(u \in V_i\)</span> , <span class="math inline">\(v
+\in V_{i+1}\)</span> , and each edge <span class="math inline">\((u,
+v)\)</span> has a positive weight <span class="math inline">\(w(u,
+v)\)</span> .</p>
+<figure>
+<img src="attachment:04240348-eb66-4a0e-9390-1fae26814f6d:image.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p>Design an algorithm to find the minimum weight path from the source
+<span class="math inline">\(s\)</span> to the sink <span
+class="math inline">\(t\)</span> .</p>
+<h3 id="algorithm-and-approach-1">2.2.2 <strong>Algorithm and
+Approach</strong></h3>
+<ul>
+<li><p><strong>State Representation:</strong> <span
+class="math inline">\(\text{d}(s, v(i, p))\)</span> represents the
+shortest path length from the source s to the vertex <span
+class="math inline">\(v(i, p)\)</span> . <span
+class="math inline">\(i\)</span> represents the segment index. <span
+class="math inline">\(p\)</span> represents the vertex index within the
+<span class="math inline">\(i\)</span> -th segment.</p></li>
+<li><p><strong>State Transition:</strong> need the provement</p>
+<p><span class="math inline">\(W(i, p) =
+  \begin{cases}
+  0, &amp; i = 1 \\
+  \min_{q \in V_{i-1}, (q, p) \in E} \{ W(i-1, q) + w(q, p) \}, &amp; i
+&gt; 1
+  \end{cases}\)</span></p></li>
+</ul>
+<figure>
+<img src="attachment:26289fe2-4213-4336-804c-a1642b7fb994:image.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p><span class="math inline">\(W[i,p]\)</span> cannot be accessed. Use
+the predecessor s<em>s</em> to retrieve the shortest path record <span
+class="math inline">\(v(i,p)\)</span></p>
+<h2 id="longest-common-subsequence">2.3 Longest Common Subsequence</h2>
+<h3 id="problem-statement-2">2.3.1 <strong>Problem
+Statement</strong></h3>
+<p>Assume there is another set of keys <span class="math inline">\(X =
+\{x_1, x_2, \dots, x_m\}\)</span> and <span class="math inline">\(Y =
+\{y_1, y_2, \dots, y_n\}\)</span> , which leads to the optimal binary
+search tree for this set of keys. suppose <span class="math inline">\(Z
+= \{B, C, D, B\}\)</span> is the set of keys <span
+class="math inline">\(X = \{A, B, C, B, D, A, B\}\)</span> , and the
+probability of the keys under the tree is {2, 3, 5, 7} .</p>
+<h3 id="algorithm-and-approach-2">2.3.2 <strong>Algorithm and
+Approach</strong></h3>
+<ul>
+<li><strong>State Representation: <span class="math inline">\(C(m,
+n)\)</span></strong> represents the length of the longest common
+subsequence (LCS) of the two original sequences. Val(i, p), 1 ≤ i ≤ n, 0
+≤ p ≤ C</li>
+<li><strong>State Transition:</strong> <span
+class="math inline">\(c[i][j] =
+\begin{cases}
+0 &amp; i = 0, j = 0 \\
+c[i - 1][j - 1] + 1 &amp; i, j &gt; 0; x_i = y_j \\
+\max\{c[i][j - 1], c[i - 1][j]\} &amp; i, j &gt; 0; x_i \neq y_j
+\end{cases}\)</span></li>
+</ul>
+<h3 id="code-example">2.3.3 <strong>Code Example</strong></h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> strX[<span class="number">100005</span>];</span><br><span class="line"><span class="type">int</span> strY[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> DP[<span class="number">1005</span>][<span class="number">1005</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">DP_memo</span><span class="params">(<span class="type">int</span>* strX, <span class="type">int</span>* strY)</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (strX[i - <span class="number">1</span>] == strY[j - <span class="number">1</span>]) &#123;</span><br><span class="line">				DP[i][j] = DP[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (DP[i - <span class="number">1</span>][j] &gt; DP[i][j - <span class="number">1</span>]) &#123;</span><br><span class="line">				DP[i][j] = DP[i - <span class="number">1</span>][j];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				DP[i][j] = DP[i][j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> DP[n][n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="built_in">memset</span>(DP, <span class="number">0</span>, <span class="keyword">sizeof</span>(DP));</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;n; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; strX[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; strY[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; DP_memo(strX, strY) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="knapsack-problem">2.4 0-1 Knapsack Problem</h2>
+<h3 id="problem-statement-3">2.3.1 <strong>Problem
+Statement</strong></h3>
+<p>Given n items and a knapsack, where the weight of item <span
+class="math inline">\(i\)</span> is W<span
+class="math inline">\(_i\)</span> and its value is <span
+class="math inline">\(V_i\)</span> , and the capacity of the knapsack is
+<span class="math inline">\(C\)</span> , the problem is to determine
+which items to include in the knapsack in order to maximize the total
+value of the items placed in the knapsack.</p>
+<h3 id="algorithm-and-approach-3">2.3.2 <strong>Algorithm and
+Approach</strong></h3>
+<ul>
+<li><strong>State Representation:</strong> The subproblem can be
+determined by two parameters: the set of items to be considered for
+packing and the available capacity of the knapsack. <span
+class="math inline">\(Val(i, p), 1 ≤ i ≤ n, 0 ≤ p ≤ C\)</span> This
+represents the maximum value that can be achieved with the capacity of
+item i and the remaining capacity p. The capacity constraint is {1, 2,
+…, i}, which corresponds to the largest possible subset of items.</li>
+<li><strong>State Transition: i = 1:</strong> <span
+class="math inline">\(Val(1, p) =
+\begin{cases}
+0, &amp; 0 \leq p &lt; w_1 \\
+v_1, &amp; p \geq w_1
+\end{cases}\)</span> <strong>i &gt; 1:</strong> <span
+class="math inline">\(Val(i, p) =
+\begin{cases}
+Val(i-1, p), &amp; 0 \leq p &lt; w_i \\
+\max(Val(i-1, p), Val(i-1, p - w_i) + v_i), &amp; p \geq w_i
+\end{cases}\)</span> where <span class="math inline">\(w_i\)</span> is
+the weight of item <span class="math inline">\(i\)</span>, and <span
+class="math inline">\(v_i\)</span> is the value of item <span
+class="math inline">\(i\)</span>.</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Algorithm Design and Analysis</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
 </search>
