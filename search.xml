@@ -914,6 +914,9 @@ IP Address→MAC Address (Resolving IPv4 addresses to Mac addresses and maintain
 <li><strong>Netcat is more powerful</strong> and is often used for <strong>network troubleshooting, hacking (pentesting), and automation</strong>.</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>Interview preparation</category>
+      </categories>
       <tags>
         <tag>Web Security</tag>
       </tags>

@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="attachment:c104508d-63ce-4977-8be1-745241b009ca:image.png">
 <meta property="article:published_time" content="2025-03-13T13:12:05.000Z">
-<meta property="article:modified_time" content="2025-03-13T13:17:30.966Z">
+<meta property="article:modified_time" content="2025-03-13T13:24:42.566Z">
 <meta property="article:author" content="Yanran Xie">
 <meta property="article:tag" content="Web Security">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,16 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-03-13 21:12:05 / Modified: 21:17:30" itemprop="dateCreated datePublished" datetime="2025-03-13T21:12:05+08:00">2025-03-13</time>
+              <time title="Created: 2025-03-13 21:12:05 / Modified: 21:24:42" itemprop="dateCreated datePublished" datetime="2025-03-13T21:12:05+08:00">2025-03-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Interview-preparation/" itemprop="url" rel="index"><span itemprop="name">Interview preparation</span></a>
+                </span>
             </span>
 
           
@@ -343,7 +352,7 @@ IP Address→MAC Address (Resolving IPv4 addresses to Mac addresses and maintain
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -440,6 +449,59 @@ IP Address→MAC Address (Resolving IPv4 addresses to Mac addresses and maintain
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
