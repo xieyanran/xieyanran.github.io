@@ -162,6 +162,180 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yanran Xie">
+      <meta itemprop="description" content="cyber trash">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yanran Xie's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/03/13/Network-Layer-Protocols-and-Web-Security-2/" class="post-title-link" itemprop="url">Network Layer Protocols and Web Security_2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-03-13 23:45:53 / Modified: 23:48:18" itemprop="dateCreated datePublished" datetime="2025-03-13T23:45:53+08:00">2025-03-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Interview-preparation/" itemprop="url" rel="index"><span itemprop="name">Interview preparation</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>for my X interview, basically focus on the Computer networks. I
+really recommend the Neso Academy lesson. And this note also included
+some seed labs content.</p>
+</blockquote>
+<h1 id="icmpicmpv4-icmpv6internet-control-message-protocol">2.
+ICMP(ICMPv4 &amp;&amp; ICMPv6)——Internet Control Message Protocol</h1>
+<p>ICMP is a supporting protocol in the Internet protocol suite. This
+protocol defines a collection of error messages that are sent back to
+the source host whenever a router or host is unable to process an IP
+packet successfully.</p>
+<p>ICMP redirect: from router to a source host, with better route
+information</p>
+<h2 id="icmp-redirect-attack-lab">2.1 ICMP Redirect Attack Lab</h2>
+<figure>
+<img src="attachment:40208da1-9220-4929-814d-7251e9980ad0:image.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h3 id="launching-icmp-redirect-attack">2.1.1 Launching ICMP Redirect
+Attack</h3>
+<p>In the ubuntu os, there is countermeasure against the ICMP redirect
+attack, we need to configure the victim host to accept ICMP redirect
+message. ICMP redirect message will not affect the routing table;
+instead, it affects the routing cache. Entries in the routing cache
+overwrite those in the routing table, until the entries expire.</p>
+<p>If we spoof redirect packets, but the victim machine has not sent out
+ICMP packets during the attack, the attack will never be successful.
+This is because the OS kernel conducts some kind of sanity check before
+accepting an ICMP redirect packets. It verifies whether the ICMP
+redirect is triggered by the packet it sent out, i.e., it inspects the
+ip2 inside the redirect packet. How strictly the checking is conducted
+depends on the OS.</p>
+<p>you can write a script by using <code>scapy</code> library to
+redirect on the Malicious Router:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python3</span><br><span class="line"></span><br><span class="line">from scapy.all import *</span><br><span class="line"></span><br><span class="line">ip = IP(src = <span class="string">&#x27;10.9.0.11&#x27;</span>, dst = <span class="string">&#x27;10.9.0.5&#x27;</span>)</span><br><span class="line">icmp = ICMP(type=<span class="number">5</span>, code=<span class="number">1</span>)</span><br><span class="line">icmp.gw = <span class="string">&#x27;10.9.0.111&#x27;</span></span><br><span class="line"></span><br><span class="line"># The enclosed IP packet should be the one that</span><br><span class="line"><span class="meta"># triggers the redirect message.</span></span><br><span class="line">ip2 = IP(src = <span class="string">&#x27;10.9.0.5&#x27;</span>, dst = <span class="string">&#x27;192.168.60.5&#x27;</span>)</span><br><span class="line">send(ip/icmp/ip2/ICMP());</span><br></pre></td></tr></table></figure>
+<figure>
+<img src="attachment:c2ab5fdd-613c-4e25-8bc0-0b19b546dcc6:image.png"
+alt="p1_attack before" />
+<figcaption aria-hidden="true">p1_attack before</figcaption>
+</figure>
+<p>p1_attack before</p>
+<figure>
+<img src="attachment:6bcbf8dc-4344-4e7c-a890-2d9273d33cd4:image.png"
+alt="p2_attack after" />
+<figcaption aria-hidden="true">p2_attack after</figcaption>
+</figure>
+<p>p2_attack after</p>
+<p><em><strong>Question 1:</strong> Can you use ICMP redirect attacks to
+redirect to a remote machine? Namely, the IP address assigned to <a
+target="_blank" rel="noopener" href="http://icmp.gw/">icmp.gw</a> is a computer not on the local LAN.
+Please show your experiment result, and explain your
+observation.</em></p>
+<p>change the script:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">icmp.gw = <span class="string">&#x27;192.168.60.6&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>the result is no difference——just like p1_attack before</p>
+<p><em><strong>Question 2:</strong> Can you use ICMP redirect attacks to
+redirect to a non-existing machine on the same network? Namely, the IP
+address assigned to <a target="_blank" rel="noopener" href="http://icmp.gw/">icmp.gw</a> is a local
+computer that is either offline or non-existing. Please show your
+experiment result, and explain your observation.</em></p>
+<p>change the script: a non-exit icmp.gw</p>
+<p>the result is no difference——just like p1_attack before</p>
+<p><em><strong>Question 3:</strong> If you look at the
+docker-compose.yml file, you will find the following entries for the
+malicious router container. What are the purposes of these entries?
+Please change their value to 1, and launch the attack again. Please
+describe and explain your observation.</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sysctls:</span><br><span class="line">- net.ipv4.conf.all.send_redirects=<span class="number">0</span></span><br><span class="line">- net.ipv4.conf.<span class="keyword">default</span>.send_redirects=<span class="number">0</span></span><br><span class="line">- net.ipv4.conf.eth0.send_redirects=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>the attack fail</p>
+<p>why???</p>
+<h3 id="launching-the-mitm-attack">2.1.2 Launching the MITM Attack</h3>
+<p>Using the ICMP redirect attack, we can get the victim to use our
+malicious router (10.9.0.111) as the router for the destination
+192.168.60.5. Therefore, all packets from the victim machine to this
+destination will be routed through the malicious router. We would like
+to modify the victim’s packets.</p>
+<p>Before launching the MITM attack, we start a TCP client and server
+program using netcat.</p>
+<ol type="1">
+<li>Disabling IP Forwarding. In the setup, the malicious router’s IP
+forwarding is enabled, so it does function like a router and forward
+packets for others. When we launch the MITM attack, we have to stop
+forwarding IP packets; instead, we will intercept the packet, make a
+change, and send out a new packet. To do that, we just need to disable
+the IP forwarding on the malicious router.
+<code>net.ipv4.ip_forward=0</code></li>
+<li>write <a target="_blank" rel="noopener" href="http://icmp.py">icmp.py</a> script, the same like
+before</li>
+<li>write MITM code: Once the IP forwarding is disabled, our program
+needs to take over the role of packet forwarding from the victim to the
+target, of course after making changes to the packets. Since the
+packet’s destination is not for us, the kernel will not give the packet
+to us; it will simply drops the packet. However, if our program is a
+sniffer program, we will get the packet from the kernel. Therefore, we
+will use the sniffand-spoof technique to implement this MITM attack. you
+can change the information that sent by the victim host.</li>
+</ol>
+<p><em><strong>Question 4:</strong> In your MITM program, you only need
+to capture the traffics in one direction.Please indicate which
+direction, and explain why.</em></p>
+<p><em><strong>Question 5:</strong> In the MITM program, when you
+capture the nc traffics from A (10.9.0.5), you can use A’s IP address or
+MAC address in the filter. One of the choices is not good and is going
+to create issues, even though both choices may work. Please try both,
+and use your experiment results to show which choice is the correct one,
+and please explain your conclusion.</em></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -736,7 +910,7 @@ original problem.</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

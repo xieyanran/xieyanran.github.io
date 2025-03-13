@@ -20,22 +20,24 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="for my X interview, basically focus on the Computer networks. I really recommend the Neso Academy lesson. And this note also included some seed labs content.  1. ARP——Address Resolution Protocol 💡">
+  <meta name="description" content="for my X interview, basically focus on the Computer networks. I really recommend the Neso Academy lesson. And this note also included some seed labs content.  2. ICMP(ICMPv4 &amp;&amp; ICMPv6)——Inter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Network Layer Protocols and Web Security_1">
-<meta property="og:url" content="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-1/index.html">
+<meta property="og:title" content="Network Layer Protocols and Web Security_2">
+<meta property="og:url" content="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-2/index.html">
 <meta property="og:site_name" content="Yanran Xie&#39;s Blog">
-<meta property="og:description" content="for my X interview, basically focus on the Computer networks. I really recommend the Neso Academy lesson. And this note also included some seed labs content.  1. ARP——Address Resolution Protocol 💡">
+<meta property="og:description" content="for my X interview, basically focus on the Computer networks. I really recommend the Neso Academy lesson. And this note also included some seed labs content.  2. ICMP(ICMPv4 &amp;&amp; ICMPv6)——Inter">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="attachment:c104508d-63ce-4977-8be1-745241b009ca:image.png">
-<meta property="article:published_time" content="2025-03-13T13:12:05.000Z">
-<meta property="article:modified_time" content="2025-03-13T13:24:42.566Z">
+<meta property="og:image" content="attachment:40208da1-9220-4929-814d-7251e9980ad0:image.png">
+<meta property="og:image" content="attachment:c2ab5fdd-613c-4e25-8bc0-0b19b546dcc6:image.png">
+<meta property="og:image" content="attachment:6bcbf8dc-4344-4e7c-a890-2d9273d33cd4:image.png">
+<meta property="article:published_time" content="2025-03-13T15:45:53.000Z">
+<meta property="article:modified_time" content="2025-03-13T15:48:18.611Z">
 <meta property="article:author" content="Yanran Xie">
 <meta property="article:tag" content="Web Security">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="attachment:c104508d-63ce-4977-8be1-745241b009ca:image.png">
+<meta name="twitter:image" content="attachment:40208da1-9220-4929-814d-7251e9980ad0:image.png">
 
-<link rel="canonical" href="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-1/">
+<link rel="canonical" href="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-2/">
 
 
 <script id="page-configurations">
@@ -48,7 +50,7 @@
   };
 </script>
 
-  <title>Network Layer Protocols and Web Security_1 | Yanran Xie's Blog</title>
+  <title>Network Layer Protocols and Web Security_2 | Yanran Xie's Blog</title>
   
 
 
@@ -168,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -181,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Network Layer Protocols and Web Security_1
+          Network Layer Protocols and Web Security_2
         </h1>
 
         <div class="post-meta">
@@ -192,7 +194,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-03-13 21:12:05 / Modified: 21:24:42" itemprop="dateCreated datePublished" datetime="2025-03-13T21:12:05+08:00">2025-03-13</time>
+              <time title="Created: 2025-03-13 23:45:53 / Modified: 23:48:18" itemprop="dateCreated datePublished" datetime="2025-03-13T23:45:53+08:00">2025-03-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -216,40 +218,112 @@
 
       
         <blockquote>
-<p>for my X interview, basically focus on the Computer networks. I really recommend the Neso Academy lesson. And this note also included some seed labs content.</p>
+<p>for my X interview, basically focus on the Computer networks. I
+really recommend the Neso Academy lesson. And this note also included
+some seed labs content.</p>
 </blockquote>
-<h1 id="1-ARP——Address-Resolution-Protocol"><a href="#1-ARP——Address-Resolution-Protocol" class="headerlink" title="1. ARP——Address Resolution Protocol"></a>1. ARP——Address Resolution Protocol</h1><aside>
-💡
-
-IP Address→MAC Address (Resolving IPv4 addresses to Mac addresses and maintaining a table of mappings)
-
-</aside>
-
-<p>Reverse ARP(RARP)</p>
-<h2 id="1-1-ARP-Cache-Poisoning-Attack-Lab"><a href="#1-1-ARP-Cache-Poisoning-Attack-Lab" class="headerlink" title="1.1 ARP Cache Poisoning Attack Lab"></a>1.1 ARP Cache Poisoning Attack Lab</h2><p>ARP protocol is a very simple protocol, and it does not implement any security measure. Under such attack, attackers can fool the victim into accepting forged IP to Mac mapping (redirect).</p>
-<p><a target="_blank" rel="noopener" href="https://seedsecuritylabs.org/Labs_20.04/Files/ARP_Attack/ARP_Attack.pdf">seedsecuritylabs.org</a></p>
-<h3 id="1-1-1-How-to-implement-ARP-Cache-Poisoning"><a href="#1-1-1-How-to-implement-ARP-Cache-Poisoning" class="headerlink" title="1.1.1 How to implement ARP Cache Poisoning?"></a>1.1.1 How to implement ARP Cache Poisoning?</h3><ul>
-<li>By using ARP request</li>
-<li>By using ARP reply, the ARP Cache table need certain IP address. As the result, it’s a reply not a request</li>
-<li>By using ARP gratuitous message. An <strong>ARP Gratuitous packet</strong> is a special type of <strong>ARP request packet</strong>. When a host needs to update outdated information in the ARP caches of all other hosts, it uses this packet. It does not expect the reply.<ul>
-<li>the <code>src_ip == dst_ip</code> is the certain host ip</li>
-<li>In the ARP head and Ether head, the <code>dst_mac==ff:ff:ff:ff:ff:ff</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="1-1-2-Man-in-the-Middle-Attack-on-Telnet-using-ARP-Cache-Poisoning"><a href="#1-1-2-Man-in-the-Middle-Attack-on-Telnet-using-ARP-Cache-Poisoning" class="headerlink" title="1.1.2 Man in the Middle Attack on Telnet using ARP Cache Poisoning"></a>1.1.2 Man in the Middle Attack on <code>Telnet</code> using ARP Cache Poisoning</h3><p><img src="attachment:c104508d-63ce-4977-8be1-745241b009ca:image.png" alt="image.png"></p>
-<ol>
-<li><strong>Launch the ARP cache poisoning attack.</strong> In A’s ARP cache, B’s IP address is mapped to M’s MAC address, and in B’s ARP cache, A’s IP address is also mapped to M’s MAC address.</li>
-<li><strong>Testing:</strong> using Ping, make sure you close ip forward function. Because if IP forwarding is enabled on M, it will act like legitimate router. <strong>Disable IP forwarding</strong> → Ensures that A and B <strong>cannot communicate</strong>, proving ARP poisoning was successful.</li>
-<li><strong>Launch the MITM attack:</strong> This time make sure you open the ip forward forwarding. <strong>Enable IP forwarding</strong> → Creates a <strong>Man-in-the-Middle (MITM) attack</strong>, where M forwards packets while spying on or modifying the traffic. Such as: change packet payload. </li>
+<h1 id="icmpicmpv4-icmpv6internet-control-message-protocol">2.
+ICMP(ICMPv4 &amp;&amp; ICMPv6)——Internet Control Message Protocol</h1>
+<p>ICMP is a supporting protocol in the Internet protocol suite. This
+protocol defines a collection of error messages that are sent back to
+the source host whenever a router or host is unable to process an IP
+packet successfully.</p>
+<p>ICMP redirect: from router to a source host, with better route
+information</p>
+<h2 id="icmp-redirect-attack-lab">2.1 ICMP Redirect Attack Lab</h2>
+<figure>
+<img src="attachment:40208da1-9220-4929-814d-7251e9980ad0:image.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h3 id="launching-icmp-redirect-attack">2.1.1 Launching ICMP Redirect
+Attack</h3>
+<p>In the ubuntu os, there is countermeasure against the ICMP redirect
+attack, we need to configure the victim host to accept ICMP redirect
+message. ICMP redirect message will not affect the routing table;
+instead, it affects the routing cache. Entries in the routing cache
+overwrite those in the routing table, until the entries expire.</p>
+<p>If we spoof redirect packets, but the victim machine has not sent out
+ICMP packets during the attack, the attack will never be successful.
+This is because the OS kernel conducts some kind of sanity check before
+accepting an ICMP redirect packets. It verifies whether the ICMP
+redirect is triggered by the packet it sent out, i.e., it inspects the
+ip2 inside the redirect packet. How strictly the checking is conducted
+depends on the OS.</p>
+<p>you can write a script by using <code>scapy</code> library to
+redirect on the Malicious Router:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python3</span><br><span class="line"></span><br><span class="line">from scapy.all import *</span><br><span class="line"></span><br><span class="line">ip = IP(src = <span class="string">&#x27;10.9.0.11&#x27;</span>, dst = <span class="string">&#x27;10.9.0.5&#x27;</span>)</span><br><span class="line">icmp = ICMP(type=<span class="number">5</span>, code=<span class="number">1</span>)</span><br><span class="line">icmp.gw = <span class="string">&#x27;10.9.0.111&#x27;</span></span><br><span class="line"></span><br><span class="line"># The enclosed IP packet should be the one that</span><br><span class="line"><span class="meta"># triggers the redirect message.</span></span><br><span class="line">ip2 = IP(src = <span class="string">&#x27;10.9.0.5&#x27;</span>, dst = <span class="string">&#x27;192.168.60.5&#x27;</span>)</span><br><span class="line">send(ip/icmp/ip2/ICMP());</span><br></pre></td></tr></table></figure>
+<figure>
+<img src="attachment:c2ab5fdd-613c-4e25-8bc0-0b19b546dcc6:image.png"
+alt="p1_attack before" />
+<figcaption aria-hidden="true">p1_attack before</figcaption>
+</figure>
+<p>p1_attack before</p>
+<figure>
+<img src="attachment:6bcbf8dc-4344-4e7c-a890-2d9273d33cd4:image.png"
+alt="p2_attack after" />
+<figcaption aria-hidden="true">p2_attack after</figcaption>
+</figure>
+<p>p2_attack after</p>
+<p><em><strong>Question 1:</strong> Can you use ICMP redirect attacks to
+redirect to a remote machine? Namely, the IP address assigned to <a
+target="_blank" rel="noopener" href="http://icmp.gw/">icmp.gw</a> is a computer not on the local LAN.
+Please show your experiment result, and explain your
+observation.</em></p>
+<p>change the script:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">icmp.gw = <span class="string">&#x27;192.168.60.6&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>the result is no difference——just like p1_attack before</p>
+<p><em><strong>Question 2:</strong> Can you use ICMP redirect attacks to
+redirect to a non-existing machine on the same network? Namely, the IP
+address assigned to <a target="_blank" rel="noopener" href="http://icmp.gw/">icmp.gw</a> is a local
+computer that is either offline or non-existing. Please show your
+experiment result, and explain your observation.</em></p>
+<p>change the script: a non-exit icmp.gw</p>
+<p>the result is no difference——just like p1_attack before</p>
+<p><em><strong>Question 3:</strong> If you look at the
+docker-compose.yml file, you will find the following entries for the
+malicious router container. What are the purposes of these entries?
+Please change their value to 1, and launch the attack again. Please
+describe and explain your observation.</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sysctls:</span><br><span class="line">- net.ipv4.conf.all.send_redirects=<span class="number">0</span></span><br><span class="line">- net.ipv4.conf.<span class="keyword">default</span>.send_redirects=<span class="number">0</span></span><br><span class="line">- net.ipv4.conf.eth0.send_redirects=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>the attack fail</p>
+<p>why???</p>
+<h3 id="launching-the-mitm-attack">2.1.2 Launching the MITM Attack</h3>
+<p>Using the ICMP redirect attack, we can get the victim to use our
+malicious router (10.9.0.111) as the router for the destination
+192.168.60.5. Therefore, all packets from the victim machine to this
+destination will be routed through the malicious router. We would like
+to modify the victim’s packets.</p>
+<p>Before launching the MITM attack, we start a TCP client and server
+program using netcat.</p>
+<ol type="1">
+<li>Disabling IP Forwarding. In the setup, the malicious router’s IP
+forwarding is enabled, so it does function like a router and forward
+packets for others. When we launch the MITM attack, we have to stop
+forwarding IP packets; instead, we will intercept the packet, make a
+change, and send out a new packet. To do that, we just need to disable
+the IP forwarding on the malicious router.
+<code>net.ipv4.ip_forward=0</code></li>
+<li>write <a target="_blank" rel="noopener" href="http://icmp.py">icmp.py</a> script, the same like
+before</li>
+<li>write MITM code: Once the IP forwarding is disabled, our program
+needs to take over the role of packet forwarding from the victim to the
+target, of course after making changes to the packets. Since the
+packet’s destination is not for us, the kernel will not give the packet
+to us; it will simply drops the packet. However, if our program is a
+sniffer program, we will get the packet from the kernel. Therefore, we
+will use the sniffand-spoof technique to implement this MITM attack. you
+can change the information that sent by the victim host.</li>
 </ol>
-<p>Telnet: <strong>Telnet</strong> (short for <strong>Telecommunication Network</strong>) is a <strong>network protocol and command-line tool.</strong> Telnet allows a user to log into a remote system, enabling them to execute commands on that system. It relies on the TCP protocol. </p>
-<h3 id="1-1-3-Man-in-the-Middle-Attack-on-Netcat-using-ARP-Cache-Poisoning"><a href="#1-1-3-Man-in-the-Middle-Attack-on-Netcat-using-ARP-Cache-Poisoning" class="headerlink" title="1.1.3 Man in the Middle Attack on Netcat using ARP Cache Poisoning"></a>1.1.3 Man in the Middle Attack on <code>Netcat</code> using ARP Cache Poisoning</h3><p>the host A and B use Netcat to communicate instead of Telnet. </p>
-<ul>
-<li><strong>Telnet is mainly for remote login</strong> (like SSH but without encryption).</li>
-<li><strong>Netcat is a general-purpose networking tool</strong> that supports TCP/UDP, port scanning, file transfer, and even creating a backdoor.</li>
-<li><strong>Netcat is more powerful</strong> and is often used for <strong>network troubleshooting, hacking (pentesting), and automation</strong>.</li>
-</ul>
+<p><em><strong>Question 4:</strong> In your MITM program, you only need
+to capture the traffics in one direction.Please indicate which
+direction, and explain why.</em></p>
+<p><em><strong>Question 5:</strong> In the MITM program, when you
+capture the nc traffics from A (10.9.0.5), you can use A’s IP address or
+MAC address in the filter. One of the choices is not good and is going
+to create issues, even though both choices may work. Please try both,
+and use your experiment results to show which choice is the correct one,
+and please explain your conclusion.</em></p>
 
     </div>
 
@@ -269,13 +343,10 @@ IP Address→MAC Address (Resolving IPv4 addresses to Mac addresses and maintain
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/02/26/Dynamic-Programming/" rel="prev" title="🥼Dynamic Programming">
-      <i class="fa fa-chevron-left"></i> 🥼Dynamic Programming
+    <a href="/2025/03/13/Network-Layer-Protocols-and-Web-Security-1/" rel="prev" title="Network Layer Protocols and Web Security_1">
+      <i class="fa fa-chevron-left"></i> Network Layer Protocols and Web Security_1
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/03/13/Network-Layer-Protocols-and-Web-Security-2/" rel="next" title="Network Layer Protocols and Web Security_2">
-      Network Layer Protocols and Web Security_2 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -334,7 +405,9 @@ IP Address→MAC Address (Resolving IPv4 addresses to Mac addresses and maintain
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-ARP%E2%80%94%E2%80%94Address-Resolution-Protocol"><span class="nav-number">1.</span> <span class="nav-text">1. ARP——Address Resolution Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-ARP-Cache-Poisoning-Attack-Lab"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 ARP Cache Poisoning Attack Lab</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-How-to-implement-ARP-Cache-Poisoning"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 How to implement ARP Cache Poisoning?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-Man-in-the-Middle-Attack-on-Telnet-using-ARP-Cache-Poisoning"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 Man in the Middle Attack on Telnet using ARP Cache Poisoning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-Man-in-the-Middle-Attack-on-Netcat-using-ARP-Cache-Poisoning"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.3 Man in the Middle Attack on Netcat using ARP Cache Poisoning</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#icmpicmpv4-icmpv6internet-control-message-protocol"><span class="nav-number">1.</span> <span class="nav-text">2.
+ICMP(ICMPv4 &amp;&amp; ICMPv6)——Internet Control Message Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#icmp-redirect-attack-lab"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 ICMP Redirect Attack Lab</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#launching-icmp-redirect-attack"><span class="nav-number">1.1.1.</span> <span class="nav-text">2.1.1 Launching ICMP Redirect
+Attack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#launching-the-mitm-attack"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.1.2 Launching the MITM Attack</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
