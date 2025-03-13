@@ -875,4 +875,47 @@ class="math inline">\(i\)</span>.</li>
         <tag>Algorithm</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Network Layer Protocols and Web Security_1</title>
+    <url>/2025/03/13/Network-Layer-Protocols-and-Web-Security-1/</url>
+    <content><![CDATA[<blockquote>
+<p>for my X interview, basically focus on the Computer networks. I really recommend the Neso Academy lesson. And this note also included some seed labs content.</p>
+</blockquote>
+<h1 id="1-ARP——Address-Resolution-Protocol"><a href="#1-ARP——Address-Resolution-Protocol" class="headerlink" title="1. ARP——Address Resolution Protocol"></a>1. ARP——Address Resolution Protocol</h1><aside>
+💡
+
+IP Address→MAC Address (Resolving IPv4 addresses to Mac addresses and maintaining a table of mappings)
+
+</aside>
+
+<p>Reverse ARP(RARP)</p>
+<h2 id="1-1-ARP-Cache-Poisoning-Attack-Lab"><a href="#1-1-ARP-Cache-Poisoning-Attack-Lab" class="headerlink" title="1.1 ARP Cache Poisoning Attack Lab"></a>1.1 ARP Cache Poisoning Attack Lab</h2><p>ARP protocol is a very simple protocol, and it does not implement any security measure. Under such attack, attackers can fool the victim into accepting forged IP to Mac mapping (redirect).</p>
+<p><a href="https://seedsecuritylabs.org/Labs_20.04/Files/ARP_Attack/ARP_Attack.pdf">seedsecuritylabs.org</a></p>
+<h3 id="1-1-1-How-to-implement-ARP-Cache-Poisoning"><a href="#1-1-1-How-to-implement-ARP-Cache-Poisoning" class="headerlink" title="1.1.1 How to implement ARP Cache Poisoning?"></a>1.1.1 How to implement ARP Cache Poisoning?</h3><ul>
+<li>By using ARP request</li>
+<li>By using ARP reply, the ARP Cache table need certain IP address. As the result, it’s a reply not a request</li>
+<li>By using ARP gratuitous message. An <strong>ARP Gratuitous packet</strong> is a special type of <strong>ARP request packet</strong>. When a host needs to update outdated information in the ARP caches of all other hosts, it uses this packet. It does not expect the reply.<ul>
+<li>the <code>src_ip == dst_ip</code> is the certain host ip</li>
+<li>In the ARP head and Ether head, the <code>dst_mac==ff:ff:ff:ff:ff:ff</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-2-Man-in-the-Middle-Attack-on-Telnet-using-ARP-Cache-Poisoning"><a href="#1-1-2-Man-in-the-Middle-Attack-on-Telnet-using-ARP-Cache-Poisoning" class="headerlink" title="1.1.2 Man in the Middle Attack on Telnet using ARP Cache Poisoning"></a>1.1.2 Man in the Middle Attack on <code>Telnet</code> using ARP Cache Poisoning</h3><p><img src="attachment:c104508d-63ce-4977-8be1-745241b009ca:image.png" alt="image.png"></p>
+<ol>
+<li><strong>Launch the ARP cache poisoning attack.</strong> In A’s ARP cache, B’s IP address is mapped to M’s MAC address, and in B’s ARP cache, A’s IP address is also mapped to M’s MAC address.</li>
+<li><strong>Testing:</strong> using Ping, make sure you close ip forward function. Because if IP forwarding is enabled on M, it will act like legitimate router. <strong>Disable IP forwarding</strong> → Ensures that A and B <strong>cannot communicate</strong>, proving ARP poisoning was successful.</li>
+<li><strong>Launch the MITM attack:</strong> This time make sure you open the ip forward forwarding. <strong>Enable IP forwarding</strong> → Creates a <strong>Man-in-the-Middle (MITM) attack</strong>, where M forwards packets while spying on or modifying the traffic. Such as: change packet payload. </li>
+</ol>
+<p>Telnet: <strong>Telnet</strong> (short for <strong>Telecommunication Network</strong>) is a <strong>network protocol and command-line tool.</strong> Telnet allows a user to log into a remote system, enabling them to execute commands on that system. It relies on the TCP protocol. </p>
+<h3 id="1-1-3-Man-in-the-Middle-Attack-on-Netcat-using-ARP-Cache-Poisoning"><a href="#1-1-3-Man-in-the-Middle-Attack-on-Netcat-using-ARP-Cache-Poisoning" class="headerlink" title="1.1.3 Man in the Middle Attack on Netcat using ARP Cache Poisoning"></a>1.1.3 Man in the Middle Attack on <code>Netcat</code> using ARP Cache Poisoning</h3><p>the host A and B use Netcat to communicate instead of Telnet. </p>
+<ul>
+<li><strong>Telnet is mainly for remote login</strong> (like SSH but without encryption).</li>
+<li><strong>Netcat is a general-purpose networking tool</strong> that supports TCP/UDP, port scanning, file transfer, and even creating a backdoor.</li>
+<li><strong>Netcat is more powerful</strong> and is often used for <strong>network troubleshooting, hacking (pentesting), and automation</strong>.</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Web Security</tag>
+      </tags>
+  </entry>
 </search>

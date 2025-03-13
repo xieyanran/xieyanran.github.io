@@ -20,19 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="for my X interview, basically focus on the Computer networks. I really recommend the Neso Academy lesson. And this note also included some seed labs content.  1. ARP——Address Resolution Protocol 💡">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2025/02/17/hello-world/index.html">
+<meta property="og:title" content="Network Layer Protocols and Web Security_1">
+<meta property="og:url" content="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-1/index.html">
 <meta property="og:site_name" content="Yanran Xie&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="for my X interview, basically focus on the Computer networks. I really recommend the Neso Academy lesson. And this note also included some seed labs content.  1. ARP——Address Resolution Protocol 💡">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-02-17T05:17:33.343Z">
-<meta property="article:modified_time" content="2025-02-20T09:14:49.675Z">
+<meta property="og:image" content="attachment:c104508d-63ce-4977-8be1-745241b009ca:image.png">
+<meta property="article:published_time" content="2025-03-13T13:12:05.000Z">
+<meta property="article:modified_time" content="2025-03-13T13:17:30.966Z">
 <meta property="article:author" content="Yanran Xie">
+<meta property="article:tag" content="Web Security">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="attachment:c104508d-63ce-4977-8be1-745241b009ca:image.png">
 
-<link rel="canonical" href="http://example.com/2025/02/17/hello-world/">
+<link rel="canonical" href="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-1/">
 
 
 <script id="page-configurations">
@@ -45,7 +48,7 @@
   };
 </script>
 
-  <title>Hello World | Yanran Xie's Blog</title>
+  <title>Network Layer Protocols and Web Security_1 | Yanran Xie's Blog</title>
   
 
 
@@ -165,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/17/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/13/Network-Layer-Protocols-and-Web-Security-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          Network Layer Protocols and Web Security_1
         </h1>
 
         <div class="post-meta">
@@ -187,16 +190,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2025-02-17 13:17:33" itemprop="dateCreated datePublished" datetime="2025-02-17T13:17:33+08:00">2025-02-17</time>
+              <time title="Created: 2025-03-13 21:12:05 / Modified: 21:17:30" itemprop="dateCreated datePublished" datetime="2025-03-13T21:12:05+08:00">2025-03-13</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2025-02-20 17:14:49" itemprop="dateModified" datetime="2025-02-20T17:14:49+08:00">2025-02-20</time>
-              </span>
 
           
 
@@ -209,21 +206,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <blockquote>
+<p>for my X interview, basically focus on the Computer networks. I really recommend the Neso Academy lesson. And this note also included some seed labs content.</p>
+</blockquote>
+<h1 id="1-ARP——Address-Resolution-Protocol"><a href="#1-ARP——Address-Resolution-Protocol" class="headerlink" title="1. ARP——Address Resolution Protocol"></a>1. ARP——Address Resolution Protocol</h1><aside>
+💡
+
+IP Address→MAC Address (Resolving IPv4 addresses to Mac addresses and maintaining a table of mappings)
+
+</aside>
+
+<p>Reverse ARP(RARP)</p>
+<h2 id="1-1-ARP-Cache-Poisoning-Attack-Lab"><a href="#1-1-ARP-Cache-Poisoning-Attack-Lab" class="headerlink" title="1.1 ARP Cache Poisoning Attack Lab"></a>1.1 ARP Cache Poisoning Attack Lab</h2><p>ARP protocol is a very simple protocol, and it does not implement any security measure. Under such attack, attackers can fool the victim into accepting forged IP to Mac mapping (redirect).</p>
+<p><a target="_blank" rel="noopener" href="https://seedsecuritylabs.org/Labs_20.04/Files/ARP_Attack/ARP_Attack.pdf">seedsecuritylabs.org</a></p>
+<h3 id="1-1-1-How-to-implement-ARP-Cache-Poisoning"><a href="#1-1-1-How-to-implement-ARP-Cache-Poisoning" class="headerlink" title="1.1.1 How to implement ARP Cache Poisoning?"></a>1.1.1 How to implement ARP Cache Poisoning?</h3><ul>
+<li>By using ARP request</li>
+<li>By using ARP reply, the ARP Cache table need certain IP address. As the result, it’s a reply not a request</li>
+<li>By using ARP gratuitous message. An <strong>ARP Gratuitous packet</strong> is a special type of <strong>ARP request packet</strong>. When a host needs to update outdated information in the ARP caches of all other hosts, it uses this packet. It does not expect the reply.<ul>
+<li>the <code>src_ip == dst_ip</code> is the certain host ip</li>
+<li>In the ARP head and Ether head, the <code>dst_mac==ff:ff:ff:ff:ff:ff</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-2-Man-in-the-Middle-Attack-on-Telnet-using-ARP-Cache-Poisoning"><a href="#1-1-2-Man-in-the-Middle-Attack-on-Telnet-using-ARP-Cache-Poisoning" class="headerlink" title="1.1.2 Man in the Middle Attack on Telnet using ARP Cache Poisoning"></a>1.1.2 Man in the Middle Attack on <code>Telnet</code> using ARP Cache Poisoning</h3><p><img src="attachment:c104508d-63ce-4977-8be1-745241b009ca:image.png" alt="image.png"></p>
+<ol>
+<li><strong>Launch the ARP cache poisoning attack.</strong> In A’s ARP cache, B’s IP address is mapped to M’s MAC address, and in B’s ARP cache, A’s IP address is also mapped to M’s MAC address.</li>
+<li><strong>Testing:</strong> using Ping, make sure you close ip forward function. Because if IP forwarding is enabled on M, it will act like legitimate router. <strong>Disable IP forwarding</strong> → Ensures that A and B <strong>cannot communicate</strong>, proving ARP poisoning was successful.</li>
+<li><strong>Launch the MITM attack:</strong> This time make sure you open the ip forward forwarding. <strong>Enable IP forwarding</strong> → Creates a <strong>Man-in-the-Middle (MITM) attack</strong>, where M forwards packets while spying on or modifying the traffic. Such as: change packet payload. </li>
+</ol>
+<p>Telnet: <strong>Telnet</strong> (short for <strong>Telecommunication Network</strong>) is a <strong>network protocol and command-line tool.</strong> Telnet allows a user to log into a remote system, enabling them to execute commands on that system. It relies on the TCP protocol. </p>
+<h3 id="1-1-3-Man-in-the-Middle-Attack-on-Netcat-using-ARP-Cache-Poisoning"><a href="#1-1-3-Man-in-the-Middle-Attack-on-Netcat-using-ARP-Cache-Poisoning" class="headerlink" title="1.1.3 Man in the Middle Attack on Netcat using ARP Cache Poisoning"></a>1.1.3 Man in the Middle Attack on <code>Netcat</code> using ARP Cache Poisoning</h3><p>the host A and B use Netcat to communicate instead of Telnet. </p>
+<ul>
+<li><strong>Telnet is mainly for remote login</strong> (like SSH but without encryption).</li>
+<li><strong>Netcat is a general-purpose networking tool</strong> that supports TCP/UDP, port scanning, file transfer, and even creating a backdoor.</li>
+<li><strong>Netcat is more powerful</strong> and is often used for <strong>network troubleshooting, hacking (pentesting), and automation</strong>.</li>
+</ul>
 
     </div>
 
@@ -232,17 +249,21 @@
     
 
       <footer class="post-footer">
+            <i class="fa fa-tag"></i>
+          <div class="post-tags">
+              <a href="/tags/Web-Security/" rel="tag"> Web Security</a>
+          </div>
 
         
 
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2025/02/18/article-1/" rel="next" title="👓Enumination">
-      👓Enumination <i class="fa fa-chevron-right"></i>
+    <a href="/2025/02/26/Dynamic-Programming/" rel="prev" title="🥼Dynamic Programming">
+      <i class="fa fa-chevron-left"></i> 🥼Dynamic Programming
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -301,7 +322,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-ARP%E2%80%94%E2%80%94Address-Resolution-Protocol"><span class="nav-number">1.</span> <span class="nav-text">1. ARP——Address Resolution Protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-ARP-Cache-Poisoning-Attack-Lab"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 ARP Cache Poisoning Attack Lab</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-How-to-implement-ARP-Cache-Poisoning"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 How to implement ARP Cache Poisoning?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-Man-in-the-Middle-Attack-on-Telnet-using-ARP-Cache-Poisoning"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 Man in the Middle Attack on Telnet using ARP Cache Poisoning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-Man-in-the-Middle-Attack-on-Netcat-using-ARP-Cache-Poisoning"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.3 Man in the Middle Attack on Netcat using ARP Cache Poisoning</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
